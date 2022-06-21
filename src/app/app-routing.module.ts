@@ -4,8 +4,8 @@ import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-ses
 import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
 
 const routes: Routes = [
-  { path: '/', component: PortfolioComponent },
-  { path: '/iniciarSesion', component: IniciarSesionComponent }
+{path: '', component: PortfolioComponent },
+{path: 'iniciarSesion', component: IniciarSesionComponent}
 ];
 
 @NgModule({
