@@ -1,0 +1,28 @@
+#form{
+    width: 60%;
+    margin-left: 20%;
+    border-radius: 20px;
+    background-color: var(--color-primario);
+    box-shadow: 30px 30px 30px rgb(17, 18, 18);
+    border: solid 2px grey;
+    padding: 2em;
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    margin-right: 2em;
+    color: antiquewhite;
+
+}
+
+#contenido{
+    background: url("../../../assets/seccion.jpg");
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 2em;
+}
