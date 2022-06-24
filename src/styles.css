@@ -4,81 +4,25 @@
     padding: 0;
     font-size: 16px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: aliceblue;
    
 }
 
 :root {
     --color-primario:#1d262d;
+    --box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
 }
+
+html {
+    font-size: 16px;
+}
+  
 
 body{
     background-image:  whitesmoke;
     color: whitesmoke;
 }
 
-header{
-    background-color: var(--color-primario);
-    width: 100%; /*Ocupa todo lo largo de la pantalla*/
-    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
-    
-}
-
-nav ul {
-    list-style: none;
-    display: flex;/*Organiza el contenido como si fueran tablas*/
-    justify-content: flex-end;/*Coloca todos los elementos a lo ultimo/derecha*/
-    align-items: center;/*Alinea los items en el centro*/
-    height: 5em;/*Ancho de la barra de la lista */
-}
-
-nav ul li {
-    padding-right: 1em;/* Espacio entre los elemenntos de la lista*/
-}
-
-#logoArgProg {
-    /*Establecemos tamaño de la imagen*/
-    height: 3.5em;
-    width: 11em;
-}
-
-#logoArgProg:hover {
-    /*Establecemos tamaño de la imagen*/
-    height: 3.8em;
-    width: 11.5em;
-}
-
-
-
-nav button {
-    background-color: transparent;    /*Eliminamos propiedades por defecto del boton*/
-    border: none;
-    cursor: pointer;    /*Efecto cursor cuando se se posicionan en el elemento*/
-}
-
-.icono {
-    /*Establecemos tamaño de la imagen*/
-    height: 3em;
-    width: 3em;
-  }
-
-/*Efecto cuando se posicionan en el elemento*/
-.icono:hover {
-    height: 3.3em;
-    width: 3.3em;
-}
-
-/*Ubicamos el primer elemento de la lista/logoArgPro al inicio/lado izquierdo*/
-nav ul li:first-child {
-    margin-right: auto;
-    margin-left: 2em;
-    /*Espacio entre el elemento y el borde de la pantalla*/
-}
-
-/*Espacio entre el ultimo elemento de la lista/loging y el borde de la pantalla*/
-nav ul li:last-child {
-    margin-right: 2em;
-   
-}
 
 /*--------------------------------------------------------------------------------------*/
 
@@ -271,45 +215,34 @@ article img{
     font-size: 20px;
     padding-top: 0.5em;
     margin-bottom: 0.5em;
+    padding-bottom: 1em;
+    border-bottom: solid 1px white;
+ 
     
-    border-top-right-radius: 100px;
-    padding-left: 1em;
-    text-align: left;
-    border: solid 3px rgba(128, 128, 128, 0.3);
-    box-shadow: -3px -3px 2px rgba(103, 96, 96, 0.3);
+    
 }
 .top h3, .datosEducacion h4{
     font-size: 18px;
-    padding-top: 0.5em;
-    
-    border-bottom-left-radius: 100px;
-    text-align: right;
-    padding-right: 1em;
-    border: solid 3px rgba(128, 128, 128, 0.3);
-    box-shadow: 3px 3px 2px rgba(103, 96, 96, 0.3);
+   
 }
+
+
 
 .datosEducacion h4{
     padding-bottom: 0.5em;
+
+    
 }
 .datosEducacion h3{
-    font-size: 18px;
-    padding-top: 0.5em;
-     border: solid 3px rgba(128, 128, 128, 0.3);
-    margin-bottom: 0.5em;
+    font-size: 21px;
+    border-bottom: solid 1px white;
+    margin-bottom: 1em;
+ 
 }
 
 
-article:hover .top{
-    display: none;
-    
-}
-article:hover .descripcion{
- display: block;
-    
-}
+
 article p{
-    display: none;
     font-size: 16px;
     text-align: justify;
     padding-bottom: 1em;
@@ -317,3 +250,13 @@ article p{
     padding-top: 1em;
     border-top: solid 1px white;
 }
+
+
+
+/* Teléfonos */
+@media only screen and (max-width: 575px){
+    html{
+        font-size: 8px;
+    }
+    
+    }

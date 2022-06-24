@@ -11,6 +11,7 @@ import { HabilidadesComponent } from './componentes/habilidades/habilidades.comp
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
 import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PortfolioComponent } from './componentes/portfolio/portfolio.component'
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
