@@ -1,16 +1,18 @@
 <header>
     <nav>
         <ul>
-            <li><a href="https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa"
-                    target="_blank"><img id="logoArgProg" src="./assets/logoArgentinaProgramadddd.png"
-                        alt="Logo Argentina Programa"></a></li>
-            <li><a href="https://www.facebook.com/" target="_blank"><img class="icono" src="./assets/facebook.ico"
+            <li><a [href]="redSocial.argentinaPrograma" target="_blank"><img id="logoArgProg"
+                        src="./assets/logoArgentinaProgramadddd.png" alt="Argentina Programa"></a></li>
+            <li><a [href]="redSocial.facebook" target="_blank"><img class="icono" src="./assets/facebook.ico"
                         alt="FACEBOOK"></a></li>
-            <li><a href="https://www.twitter.com/" target="_blank"><img class="icono" src="./assets/twitter.ico"
-                        alt="TWETTER"></a></li>
-            <li><a href="https://www.instagram.com/" target="_blank"><img class="icono" src="./assets/instagram.ico"
+            <li><a [href]="redSocial.twitter" target="_blank"><img class="icono" src="./assets/twitter.ico"
+                        alt="TWITTER"></a></li>
+            <li><a [href]="redSocial.instagram" target="_blank"><img class="icono" src="./assets/instagram.ico"
                         alt="INSTAGRAM"></a></li>
-            <li><a routerLink="/iniciarSesion"><img class="icono" src="./assets/login.png" alt="LOGIN"></a></li>
+
+            <li *ngIf="!esEdicion"><a routerLink="/iniciarSesion"><img class="icono" src="./assets/login.png"
+                        alt="LOGIN"></a></li>
+            <li *ngIf="esEdicion"><a routerLink=""><img class="icono" src="./assets/logout.ico" alt="LOGOUT"></a></li>
         </ul>
     </nav>
 </header>

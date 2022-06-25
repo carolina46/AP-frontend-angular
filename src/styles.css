@@ -26,6 +26,14 @@ body{
 
 /*--------------------------------------------------------------------------------------*/
 
+.iconoEdicion {
+    /*Establecemos tamaño de la imagen*/
+    height: 3rem;
+    width: 3rem;
+    
+  }
+
+
 #introduccion{
     background-color: var(--color-primario);
     width: 80%;
