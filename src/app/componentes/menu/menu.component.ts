@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   esEdicion : boolean = false;
 
   redSocial : RedSocial = {
+    id : 1,
     argentinaPrograma : 'https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa',
     facebook : 'https://www.facebook.com/',
     twitter : 'https://www.twitter.com/',
