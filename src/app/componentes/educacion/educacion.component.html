@@ -1,36 +1,27 @@
 <section id="educacion">
-    <div class="titulo">
-        <h1>Educación</h1>
+
+    <div class="contenedorTitulo">
+        <h1 class="titulo">Educación</h1>
+        <a *ngIf="esEdicion" href=""><img id="agregarEnTitulo" class="iconoPanelEdicion" src="./assets/agregar.png"
+                alt="AGREGAR"></a>
     </div>
-    <div class="articles" id="listaEducacion">
-        <article>
-            <img src="./assets/educacion.png" alt="Logo Institucional">
-            <div class="datosEducacion">
-                <h2>Nombre Instituto</h2>
-                <h3>Carrera o titulo obtenido</h3>
-                <h4>Desde: 03/2015</h4>
-                <h4>Hasta: 01/2018</h4>
+
+
+    <div class="contenedorArticles">
+        <article *ngFor="let edu of educacion">
+            <div *ngIf="esEdicion" class="panelEdicionArticle">
+                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/editar.png"
+                        alt="EDITAR"></a>
+                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/eliminar.png"
+                        alt="ELIMINAR"></a>
             </div>
-        </article>
-  
-        <article>
-            <img src="./assets/educacion.png" alt="Logo Institucional">
-            <div class="datosEducacion">
-                <h2>Nombre Instituto</h2>
-                <h3>Carrera o titulo obtenido</h3>
-                <h4>Desde: 03/2015</h4>
-                <h4>Hasta: 01/2018</h4>
-            </div>
-        </article>
-  
-        <article>
-            <img src="./assets/educacion.png" alt="Logo Institucional">
-            <div class="datosEducacion">
-                <h2>Nombre Instituto</h2>
-                <h3>Carrera o titulo obtenido</h3>
-                <h4>Desde: 03/2015</h4>
-                <h4>Hasta: 01/2018</h4>
-            </div>
+            <img class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional">
+
+            <h2 class="institucionArticle">{{edu.nombreInstitucion}}</h2>
+            <h3 class="tituloArticle">{{edu.tituloObtenido}}</h3>
+            <h3 class="fechaArticle">Desde {{edu.desde}}</h3>
+            <h3 class="fechaArticle">Desde {{edu.hasta}}</h3>
+
         </article>
     </div>
-  </section>
+</section>
