@@ -4,12 +4,12 @@
     </div>
 
     <div id="contenido">
-        <div id="form">
-            <form [formGroup]="form">
+        <div  >
+            <form [formGroup]="form" id="form">
               
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" formControlName="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label for="exampleInputEmail1">Nombre de usuario</label>
+                    <input formControlName="nombreUsuario" class="form-control">
                     
                 </div>
 
@@ -20,7 +20,7 @@
                 
                 <button type="submit" class="btn btn-primary">Acceder</button>
                 <button class="btn btn-primary">Volver</button>
-                <a routerLink="/">Volver</a>
+                <a routerLink="/edicionPortfolio">Edicion</a>
             </form>
         </div>
     </div>
