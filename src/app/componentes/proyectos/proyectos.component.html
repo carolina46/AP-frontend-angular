@@ -1,38 +1,29 @@
-<section id="proyectos">
-  
-    <div class="titulo">
-        <h1>Proyectos</h1>
+<section>
+    <div class="contenedorTitulo">
+        <h1 class="titulo">Proyectos</h1>
+        <a *ngIf="esEdicion" href=""><img id="agregarEnTitulo" class="iconoPanelEdicion" src="./assets/agregar.png"
+                alt="AGREGAR"></a>
     </div>
-    <div class="articles" id="listaProyectos">
-        <article>
-            <h2>Nombre del proyecto</h2>
-            <h3>Desde mes/año - Hasta mes/año</h3>
-            <p class="descripcion" >Descripcion del proyecto:Lorem ipsum dolor sit amet. Non illum
-                voluptas
-                fuga quidem in sapiente voluptates
-                eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore
-                nobis ea nihil fugiat eos aspernatur consequuntur qui harum molestiae.</p>
-            <button>Mas informacion</button>
-        </article>
-        <article>
-            <h2>Nombre del proyecto</h2>
-            <h3>Desde mes/año - Hasta mes/año</h3>
-            <p class="descripcion">Descripcion del proyecto:Lorem ipsum dolor sit amet. Non illum
-                voluptas
-                fuga quidem in sapiente voluptates
-                eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore
-                nobis ea nihil fugiat eos aspernatur consequuntur qui harum molestiae.</p>
-            <button>Mas informacion</button>
-        </article>
-        <article>
-            <h2>Nombre del proyecto</h2>
-            <h3>Desde mes/año - Hasta mes/año</h3>
-            <p class="descripcion">Descripcion del proyecto:Lorem ipsum dolor sit amet. Non illum
-                voluptas
-                fuga quidem in sapiente voluptates
-                eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore
-                nobis ea nihil fugiat eos aspernatur consequuntur qui harum molestiae.</p>
-            <button>Mas informacion</button>
+    <div class="contenedorArticles">
+        <article *ngFor="let proyecto of proyectos">
+            <div *ngIf="esEdicion" class="panelEdicionArticle">
+                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/editar.png"
+                        alt="EDITAR"></a>
+                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/eliminar.png"
+                        alt="ELIMINAR"></a>
+            </div>
+            <h2 class="tituloArticle">{{proyecto.nombre}}</h2>
+            <h3 class="fechaArticle">Desde {{proyecto.desde}}</h3>
+            <h3 class="fechaArticle">Desde {{proyecto.hasta}}</h3>
+        
+        <div *ngIf="proyecto.imagenes.length>0" class="galeriaImagenes">
+            <button *ngIf="imagenActual[proyecto.id]>0"  (click)="imagenAnterior(proyecto.id)">A</button>
+            <img class="imagenMuestra" [src]="proyecto.imagenes[imagenActual[proyecto.id]]" alt="">
+            <button *ngIf="imagenActual[proyecto.id]<proyecto.imagenes.length-1" (click)="imagenSiguiente(proyecto.id)">S</button>
+        </div>
+        
+            <p class="descripcion">{{proyecto.descripcion}}</p>
+            <a class="botonMasInformacion"  [href]="proyecto.link" target="_blank">Mas informacion</a>
         </article>
     </div>
   </section>
