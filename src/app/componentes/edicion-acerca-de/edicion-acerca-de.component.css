@@ -1,0 +1,190 @@
+
+#contenedorAcercaDe{
+    background-color: var(--color-primario);
+    box-shadow: var(--box-shadow);
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 3rem;
+    border-radius: 20px;
+}
+
+/*--------------------------------------------*/
+
+#contenedorBanner{
+    width: 100%;
+    position:relative;
+    height:20rem;
+
+}
+
+#banner{
+    width: 100%;
+    height:100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+/*--------------------------------------------*/
+
+#ContenedorInformacionDePerfil{
+    padding: 2em;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "fotoDePerfil datos";    
+}
+
+
+/*---------------------*/
+#contenedorFotoDePerfil{
+    position:relative;
+    grid-area: fotoDePerfil;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+#fotoDePerfil {
+    width: 15rem;
+    height: 15rem;
+    border-radius: 20px;
+}
+
+
+/*---------------------*/
+#contenedosDatosPersonales{
+    padding: 2em;
+    grid-area: datos;
+    display:inline-block;
+    position:relative;  
+}
+
+#contenedosDatosPersonales a{
+    position: absolute;
+    top:1rem;
+    right:1rem;
+}
+  
+h1{
+    font-size: 2rem;
+    padding-bottom: 0.5em;
+}
+
+h2{
+    font-size: 1.5rem;
+    padding-bottom: 0.5em;
+}
+
+p{   
+    font-size: 1rem;
+    text-align: justify;
+     
+}
+
+
+#botoneraBanner{
+    width: 10rem;
+    height: 5rem;
+    margin-bottom: 2rem;
+    position: absolute;
+    bottom: 0rem;
+    right: 0rem;
+    text-align: center;
+   
+
+}
+
+#botoneraFotoDePerfil{
+    width: 8rem;
+    height: 5rem;
+    margin-top: 8rem;
+    position: absolute;
+    bottom: 0rem;
+    right: 0rem;
+    text-align: center;
+   
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*------Posicion icono editar------*/
+#contenedorFotoDePerfil a{
+    position: absolute;
+    top:50%;
+    left:0rem;}
+
+#contenedosDatosPersonales img{
+    position: absolute;
+    top:1rem;
+    right:1rem;
+}
+
+.panelAceptar-cancelar{
+    display:flex;
+}
+
+label{
+    width: 100%;
+    font-size: 1rem;
+    background-color: var(----color-primario);
+    margin-top: 2rem;
+}
+
+input{
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background-color: var(----color-primario);
+    color: var(--color-secundario);
+    border: solid 1px white;
+}
+
+#nombreImput{
+    font-size: 2rem;
+}
+
+#tituloImput{
+   font-size: 1.5rem;
+}
+
+textarea{   
+    width: 100%;
+    height: 15rem;
+    font-size: 1rem;
+    text-align: justify;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background-color: var(----color-primario);
+    color: var(--color-secundario);
+    border: solid 1px white;
+    /*Para evitar que sean muy largos la posibilidad de scroll*/
+    overflow-y:auto;
+}
+
+/*Oculta la barra de scroll*/
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Teléfonos */
+@media only screen and (max-width: 575px){
+    #ContenedorInformacionDePerfil{
+        grid-template-columns: 1fr;
+        grid-template-areas: "fotoDePerfil" "datos";
+    }
+
+    
+    #contenedosDatosPersonales{
+        margin-top: 4rem;
+        text-align: center;  }
+    
+}

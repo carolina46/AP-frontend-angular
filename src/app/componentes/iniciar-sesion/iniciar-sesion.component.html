@@ -1,26 +1,23 @@
 <section>
-    <div class="titulo">
-        <h1>Edición del portfolio</h1>
+    <div class="contenedorTitulo">
+        <h1 class="titulo">Editar portfolio</h1>
     </div>
-
-    <div id="contenido">
-        <div  >
+    <div class="contenedorFormulario">
+        <div class="contenidoFormulario">
             <form [formGroup]="form" id="form">
-              
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre de usuario</label>
-                    <input formControlName="nombreUsuario" class="form-control">
-                    
-                </div>
+                <div class="contenedorCampo">
+                    <label for="nombre">Nombre de usuario</label>
+                    <input id="nombre" formControlName="nombreUsuario">
 
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" formControlName="contraseña" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
-                
-                <button type="submit" class="btn btn-primary">Acceder</button>
-                <button class="btn btn-primary">Volver</button>
-                <a routerLink="/edicionPortfolio">Edicion</a>
+                <div class="contenedorCampo">
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" id="contraseña" formControlName="contraseña">
+                </div>
+                <div class="contenedorBotones">
+                    <button class="botonFormulario" type="submit" routerLink="/edicionPortfolio">Acceder</button>
+                    <button class="botonFormulario" routerLink="">Cancelar</button>
+                </div>
             </form>
         </div>
     </div>

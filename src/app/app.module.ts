@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './componentes/menu/menu.component';
@@ -13,6 +13,8 @@ import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-ses
 import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EdicionPortfolioComponent } from './componentes/edicion-portfolio/edicion-portfolio.component';
+import { EdicionAcercaDeComponent } from './componentes/edicion-acerca-de/edicion-acerca-de.component';
+
 
 @NgModule({
   declarations: [
@@ -25,13 +27,16 @@ import { EdicionPortfolioComponent } from './componentes/edicion-portfolio/edici
     ProyectosComponent,
     IniciarSesionComponent,
     PortfolioComponent,
-    EdicionPortfolioComponent
+    EdicionPortfolioComponent,
+    EdicionAcercaDeComponent,
+  
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

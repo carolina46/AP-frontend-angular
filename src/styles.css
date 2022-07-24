@@ -1,7 +1,7 @@
 :root {
-    
-    --color-primario:#1d262d;
-    --color-secundario:#f5f5f5;
+
+    --color-primario: #1d262d;
+    --color-secundario: #f5f5f5;
     --box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
     --box-shadow-fuerte: 10px 10px 10px rgb(0, 0, 0);
     --border: solid 2px grey;
@@ -13,14 +13,29 @@
     padding: 0;
     font-size: 16px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: var(--color-secundario); 
+    color: var(--color-secundario);
 }
 
-body{background-color: var(--color-secundario);}
+body {
+    background-color: var(--color-secundario);
+}
 
 
-/*--------------------------------------------------------------------------------------*/
+/*------------------EDICION--------------------------------------------------------------------*/
 
+#contenedorIconoEditar{
+    
+    position: absolute;
+    bottom:1rem;
+    right:3rem;
+    width: 4rem;
+    margin-bottom: 1rem;
+}
+
+.inputImagen{
+    display: none; 
+    visibility: none;
+}
 
 .iconoPanelEdicion {
     /*Establecemos tamaño de la imagen*/
@@ -35,9 +50,45 @@ body{background-color: var(--color-secundario);}
     width: 3.5rem;
 }
 
+.panelAceptar-cancelar{
+    /*ubicacion del panel*/
+    position: absolute;
+    bottom:1rem;
+    right:3rem;   
+}
+
+
+.contenedorAceptar-cancelar{
+    width: 4rem;
+    height: 4rem;
+    margin-left: 1rem;
+}
+
+
+.panelEdicionArticle {
+    height: 5rem;
+    text-align: right;
+    width: 100%;
+}
+
+
+.panelGuardar{
+    margin-right: 1rem;
+    width: 50%;
+    background-color: blue;
+}
+.panelCancelar{
+    margin-right: 1rem;
+    width: 50%;
+    background-color: rgb(255, 0, 230);
+}
+
+
+
+
 /*--------------------------------------------------------------------------------------*/
 
-section{
+section {
     background-color: var(--color-primario);
     width: 70%;
     margin-left: 15%;
@@ -49,7 +100,7 @@ section{
 
 
 /*----------------------------*/
-.contenedorTitulo{
+.contenedorTitulo {
     width: 100%;
     height: 7rem;
     padding: 2rem;
@@ -58,30 +109,30 @@ section{
     overflow: auto;
 }
 
-.titulo{
+.titulo {
     float: left;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-transform: uppercase;
 }
 
-#agregarEnTitulo{
-    float:right;
-   
+#agregarEnTitulo {
+    float: right;
+
 }
 
 /*----------------------------*/
 
-.contenedorArticles{
+.contenedorArticles {
     background: url("./assets/seccion.jpg");
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     padding: 1em;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20em,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
 }
 
 
-article{
+article {
     display: block;
     text-align: center;
     border-radius: 20px;
@@ -92,14 +143,9 @@ article{
     margin: 1em;
 }
 
-.panelEdicionArticle{
-    height: 5rem;
-    text-align: right;
-    width: 100%;
-}
 
 
-.logoInstitucional{
+.logoInstitucional {
     height: 8m;
     width: 8em;
     border-radius: 100px;
@@ -109,21 +155,22 @@ article{
     box-shadow: 4px 4px 3px rgba(103, 96, 96, 0.3);
 }
 
-.institucionArticle{
+.institucionArticle {
     font-size: 1.8rem;
 }
 
-.tituloArticle{
+.tituloArticle {
     font-size: 1.5rem;
     padding-top: 0.5em;
     padding-bottom: 1em;
 }
-.fechaArticle{
+
+.fechaArticle {
     font-size: 1.2rem;
     padding-bottom: 1em;
 }
 
-.descripcion{
+.descripcion {
     font-size: 1.2rem;
     text-align: justify;
     padding-bottom: 1em;
@@ -132,14 +179,23 @@ article{
     border-top: solid 1px white;
     margin-bottom: 2em;
     margin-top: 2em;
+    /*Para evitar que sean muy largos ponemos una
+     altura maxima y la posibilidad de scroll*/
+     max-height: 20rem;
+    overflow-y:auto;
 }
 
+/*Oculta la barra de scroll*/
+::-webkit-scrollbar {
+    display: none;
+}
 /*-------------------------------------------*/
 
-#habilidades{
-    grid-template-columns: repeat(auto-fill, minmax(15em,1fr));
+#habilidades {
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
 }
-.Habilidad{
+
+.Habilidad {
     height: 8em;
     width: 8em;
     border-radius: 0px;
@@ -149,7 +205,7 @@ article{
     box-shadow: none;
 }
 
-.Habilidad:hover{
+.Habilidad:hover {
     height: 6em;
     width: 6em;
     margin-bottom: 1em;
@@ -160,44 +216,109 @@ article{
 
 /*-------------------------------------------*/
 
-.botonMasInformacion{ 
-  background-color: rgba(128, 128, 128, 0.3);
-  color: var(--color-secundario);
-  border: var(--border);
-  border-radius: 10px;
-  padding: 1em;
-  box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
-  cursor: pointer; 
-  text-decoration:none;
-  font-size: 1rem;
+.botonMasInformacion {
+    background-color: rgba(128, 128, 128, 0.3);
+    color: var(--color-secundario);
+    border: var(--border);
+    border-radius: 10px;
+    padding: 1em;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
 }
 
-.botonMasInformacion:hover{ 
+.botonMasInformacion:hover {
     background-color: rgba(128, 128, 128, 0.6);
     color: var(--color-secundario);
 }
 
 
-.galeriaImagenes{
+.galeriaImagenes {
     width: 100%;
     padding: 1em;
 }
 
-.imagenMuestra{
+.imagenMuestra {
     width: 70%;
     border-radius: 20px;
     margin-left: 1em;
     margin-right: 1em;
 }
 
+/*------------------FORMULARIOS-------------------------*/
+.contenedorFormulario {
+    background: url("./assets/seccion.jpg");
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 1em;
+}
 
+.contenidoFormulario {
+    background-color: var(--color-primario);
+    width: 70%;
+    margin-left: 15%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding: 2em;
+    border: var(--border);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-fuerte);
+
+
+}
+
+.contenedorBotones {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.botonFormulario {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    height: 3rem;
+    border: none;
+    margin: 1rem;
+    border-radius: 10px;
+    padding: 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    border: var(--border);
+}
+
+.botonFormulario:hover {
+    background-color: rgba(128, 128, 128, 0.6);
+    color: var(--color-secundario);
+}
+
+.contenedorCampo {
+    width: 100%;
+    text-align: left;
+    margin-top: 2rem;
+}
+
+label {
+    width: 30%;
+    float: left;
+    padding: 0.3rem;
+    font-size: 1rem;
+}
+
+input, textarea{
+    width: 60%;
+    border-radius: 10px;
+    color: var(--color-primario);
+    padding: 0.3rem;
+}
 
 
 /* Teléfonos */
-@media only screen and (max-width: 575px){
-    *{
+@media only screen and (max-width: 575px) {
+    * {
         font-size: 8px;
     }
 
-  
-    }
+
+}

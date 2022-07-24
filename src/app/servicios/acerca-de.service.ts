@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AcercaDe } from '../modelo/acerca-de';
-import { catchError, map, tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,11 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 export class AcercaDeService {
 
-  private url = 'http://localhost:8080/acercaDe/';
-  //private header = ({ headers: new HttpHeaders({ 'Content-Type': 'application/json' })});
+  private url : string = 'https://ap--carolina-perez-backend.herokuapp.com/acercaDe/';
+  private httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+
 
 
   constructor(private http: HttpClient) { }
@@ -23,12 +26,11 @@ export class AcercaDeService {
 
   }
 
-/** PUT: actualizamos la imagen del banner en el servido
-actualizarImagenBanner (banner: string): Observable<Boolean> {
-  let body = JSON.stringify(banner); 
-  return this.http.put<Boolean>(this.url + 'banner/actualizar', body, this.header);
+/** POST: Guardo datos de "Acerca de"*/
+ guaradarAcercaDe (acercaDe: AcercaDe): Observable<Boolean> {
+  return this.http.post<Boolean>(this.url + 'guardar', acercaDe, this.httpOptions);
 }
-*/
+
 
 
 

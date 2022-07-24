@@ -10,9 +10,9 @@
     <div class="contenedorArticles">
         <article *ngFor="let edu of educacion">
             <div *ngIf="esEdicion" class="panelEdicionArticle">
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/editar.png"
+                <a href=""><img class="iconoPanelEdicion" src="./assets/editar.png"
                         alt="EDITAR"></a>
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/eliminar.png"
+                <a href=""><img class="iconoPanelEdicion" src="./assets/eliminar.png"
                         alt="ELIMINAR"></a>
             </div>
             <img class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional">

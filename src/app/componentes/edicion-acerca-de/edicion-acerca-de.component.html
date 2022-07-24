@@ -1,0 +1,108 @@
+<div id="contenedorAcercaDe">
+
+
+    
+    <!--SECCION DEL BANNER-->
+    <div id="contenedorBanner">
+        <!--BANNER-->
+        <img id="banner" [src]="acercaDe.banner" alt="Banner">
+        <div *ngIf="!edicionDatosDePerfil">
+            <!--BOTONERA DEL BANNER-->
+            <div id="botoneraBanner">
+                <!--BOTON EDICION BANNER-->
+                <div *ngIf="!nuevaImagen[0]">
+                    <label for="agregarBanner"><img class="iconoPanelEdicion" src="./assets/editar.png"
+                            alt="EDITAR"></label>
+                    <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="agregarBanner"
+                        (change)="capturarImagen($event, 0)">
+                </div>
+                <!--BOTONES GUARDAR Y CANCELAR NUEVO BANNER-->
+                <div *ngIf="nuevaImagen[0]" class="panelAceptar-cancelar">
+                    <div class="contenedorAceptar-cancelar">
+                        <img (click)="aceptarNuevoBanner()" class="iconoPanelEdicion" src="./assets/aceptar.png"
+                            alt="ACEPTAR">
+                    </div>
+                    <div class="contenedorAceptar-cancelar">
+                        <img (click)="cancelarNuevoBanner()" class="iconoPanelEdicion" src="./assets/cancelar.png"
+                            alt="CANCELAR">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+    <!--SECCION INFORMACION DE PERFIL-->
+    <div id="ContenedorInformacionDePerfil">
+
+
+
+
+        <!--SECCION FOTO DE PERFIL-->
+        <div id="contenedorFotoDePerfil">
+            <div *ngIf="!edicionDatosDePerfil">
+                <!--BOTONERA FOTO DE PERFIL-->
+                <div id="botoneraFotoDePerfil">
+                    <!--BOTON EDICION FOTO DE PERFIL-->
+                    <div *ngIf="!nuevaImagen[1]">
+                        <label for="agregarFotoDePerfil"><img class="iconoPanelEdicion" src="./assets/editar.png"
+                                alt="EDITAR"></label>
+                        <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="agregarFotoDePerfil"
+                            (change)="capturarImagen($event, 1)">
+                    </div>
+                    <!--BOTONES GUARDAR Y CANCELAR NUEVO BANNER-->
+                    <div *ngIf="nuevaImagen[1]" class="panelAceptar-cancelar">
+                        <div class="contenedorAceptar-cancelar">
+                            <img (click)="aceptarNuevaFotoDePerfil()" class="iconoPanelEdicion"
+                                src="./assets/aceptar.png" alt="ACEPTAR">
+                        </div>
+                        <div class="contenedorAceptar-cancelar">
+                            <img (click)="cancelarNuevaFotoDePerfil()" class="iconoPanelEdicion"
+                                src="./assets/cancelar.png" alt="CANCELAR">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--FOTO DE PERFIL-->
+            <img id="fotoDePerfil" [src]="acercaDe.fotoPerfil" alt="Foto De Perfil">
+
+        </div>
+
+
+        <!--SECCION INFORMACION DE LA PERSONA-->
+        <div id="contenedosDatosPersonales">
+            <!--INFORMACION ACTUAL DE LA PERSONA-->
+            <div *ngIf="!edicionDatosDePerfil">
+                <!--BOTON EDICION INFORMACION DE LA PERSONA-->
+                <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR" (click)="editarDatosDePerfil()">
+                <!--INFORMACION DE LA PERSONA-->
+                <h1 id="nombre">{{acercaDe.nombreCompleto}}</h1>
+                <h2>{{acercaDe.titulo}}</h2>
+                <p class="descripcion">{{acercaDe.informacionPersonal}}</p>
+            </div>
+            <!--EDICION INFORMACION DE LA PERSONA-->
+            <div *ngIf="edicionDatosDePerfil">
+                <label for="nombreImput">Nombre Completo</label>
+                <input id="nombreImput" [(ngModel)]="acercaDe.nombreCompleto" type="text" [ngModelOptions]="{standalone: true}">
+                <label for="tituloImput">Título</label>
+                <input id="tituloImput" [(ngModel)]="acercaDe.titulo" type="text" [ngModelOptions]="{standalone: true}">
+                <label for="informacionImput">Información profesional resumida</label>
+                <textarea id="informacionImput" [(ngModel)]="acercaDe.informacionPersonal" [ngModelOptions]="{standalone: true}"></textarea>
+                <!--BOTONES INFORMACION DE LA PERSONA-->
+                <div class="contenedorBotones">
+                    <button class="botonFormulario" type="button" (click)="guardarDatosPerefil()">Guardar</button>
+                    <button class="botonFormulario" type="button" (click)="cancelarDatosPerefil()">Cancelar</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

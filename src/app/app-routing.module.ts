@@ -7,7 +7,9 @@ import { EdicionPortfolioComponent } from './componentes/edicion-portfolio/edici
 const routes: Routes = [
 {path: '', component: PortfolioComponent },
 {path: 'iniciarSesion', component: IniciarSesionComponent},
-{path: 'edicionPortfolio', component: EdicionPortfolioComponent}
+{path: 'edicionPortfolio', component: EdicionPortfolioComponent},
+
+
 ];
 
 @NgModule({
