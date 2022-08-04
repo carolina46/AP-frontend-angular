@@ -13,33 +13,28 @@ export class AcercaDeComponent implements OnInit {
 
  
   //Modelo acercaDe
-  acercaDe: AcercaDe={
-    id: 1,
-    banner: "./assets/banner.jpg",
-    fotoPerfil: "./assets/foto.jpg",
-    nombreCompleto: "Carolina Veronica Perez",
-    titulo: "Full Stack Developer Jr.",
-    informacionPersonal: "Lorem ipsum dolor sit amet. Non illum voluptas fuga quidem in sapiente voluptate eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore nobis ea nihil fugiat eos aspernatur consequ.",
-  }
-  
-  /*{
+  acercaDe: AcercaDe = {
     id : 0,
-    banner: "",
-    fotoPerfil: "",
-    nombreCompleto: "",
-    titulo: "",
-    informacionPersonal: "",
-  }*/
+    banner : "./assets/banner.jpg",
+    fotoPerfil : "./assets/fotoPerfil.jpg",
+    nombreCompleto : "Nombre completo",
+    titulo : "Título obtenido",
+    informacionPersonal :"Descripción resumida de su información personal"
+  };
 
-
-
-  constructor(private acercaDeservice: AcercaDeService) {
-   
-  }
+  constructor(private acercaDeservice: AcercaDeService) {}
 
   ngOnInit(): void {
     //Obtengo los datos de Acerca de
-    this.acercaDeservice.obtenerDatosAcercaDe().subscribe(datos => {this.acercaDe=datos;
-    console.log(datos)});
+    this.acercaDeservice.obtenerDatosAcercaDe().subscribe(datos => {
+      if(datos!=null){
+        if (datos.banner == null) {datos.banner = "./assets/banner.jpg"};
+        if (datos.fotoPerfil == null) {datos.fotoPerfil = "./assets/fotoPerfil.jpg"};
+        if (datos.nombreCompleto == null) {datos.nombreCompleto = "Nombre completo"};
+        if (datos.titulo == null) {datos.titulo = "Título obtenido"};
+        if (datos.informacionPersonal == null) {datos.informacionPersonal = "Descripción resumida de su información personal"};
+        this.acercaDe = datos;
+      }
+    });
   }
 }
