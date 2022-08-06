@@ -1,17 +1,9 @@
 <section>
     <div class="contenedorTitulo">
         <h1 class="titulo">Experiencia</h1>
-        <a *ngIf="esEdicion" href=""><img id="agregarEnTitulo" class="iconoPanelEdicion" src="./assets/agregar.png"
-                alt="AGREGAR"></a>
     </div>
     <div class="contenedorArticles">
         <article *ngFor="let experiencia of experiencias">
-            <div *ngIf="esEdicion" class="panelEdicionArticle">
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/editar.png"
-                        alt="EDITAR"></a>
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/eliminar.png"
-                        alt="ELIMINAR"></a>
-            </div>
             <img class="logoInstitucional" [src]="experiencia.logoEmpresa" alt="Logo Institucional">
             <h1 class="institucionArticle">{{experiencia.nombreLugarDeTrabajo}}</h1>
             <h2 class="tituloArticle">{{experiencia.nombrePuesto}}</h2>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Experiencia } from 'src/app/modelo/experiencia';
 
 @Component({
@@ -9,7 +8,6 @@ import { Experiencia } from 'src/app/modelo/experiencia';
 })
 export class ExperienciaComponent implements OnInit {
 
-  esEdicion : boolean = false;
 
   experiencias : Experiencia[] = [{
     id : 1,
@@ -19,7 +17,7 @@ export class ExperienciaComponent implements OnInit {
     desde : "05/2011",
     hasta : "05/2012",
     descripcionActividades : "Lorem ipsum dolor sit amet. Non illum voluptas fuga quidem in sapiente voluptate eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore nobis ea nihil fugiat eos aspernatur consequuntur qui harum molestiae. Id minus reiciendis eumminima totam et quidem ratione et modi labore ex commodi alias 33 explicabo dolorem non assumenda error. Aut recusandae placeat qui nesciunt molestiae aut voluptatem consequatur qui nesciunt commodi ut ipsam optio.",
-
+posicion : 0
   },
   {
     id : 1,
@@ -29,7 +27,7 @@ export class ExperienciaComponent implements OnInit {
     desde : "05/2011",
     hasta : "05/2012",
     descripcionActividades : "Lorem ipsum dolor sit amet. Non illum voluptas fuga quidem in sapiente voluptate eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore nobis ea nihil fugiat eos aspernatur consequuntur qui harum molestiae. Id minus reiciendis eumminima totam et quidem ratione et modi labore ex commodi alias 33 explicabo dolorem non assumenda error. Aut recusandae placeat qui nesciunt molestiae aut voluptatem consequatur qui nesciunt commodi ut ipsam optio.",
-
+    posicion : 0
   },{
     id : 1,
     nombreLugarDeTrabajo : "ITs La Plata",
@@ -38,12 +36,10 @@ export class ExperienciaComponent implements OnInit {
     desde : "05/2011",
     hasta : "05/2012",
     descripcionActividades : "Lorem ipsum dolor sit amet. Non illum voluptas fuga quidem in sapiente voluptate eos aliquid iure in enim rerum. At voluptatum eius ab omnis nesciunt qui enim placeat eos labore nobis ea nihil fugiat eos aspernatur consequuntur qui harum molestiae. Id minus reiciendis eumminima totam et quidem ratione et modi labore ex commodi alias 33 explicabo dolorem non assumenda error. Aut recusandae placeat qui nesciunt molestiae aut voluptatem consequatur qui nesciunt commodi ut ipsam optio.",
-
+    posicion : 0
   }]
 
-  constructor(private router: Router) { 
-    if(this.router.url === '/edicionPortfolio')
-      this.esEdicion = true;}
+  constructor() {}
 
   ngOnInit(): void {
   }
