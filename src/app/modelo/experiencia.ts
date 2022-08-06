@@ -6,4 +6,5 @@ export interface Experiencia {
     desde : string;
     hasta : string;
     descripcionActividades : string;
+    posicion : number;
 }
