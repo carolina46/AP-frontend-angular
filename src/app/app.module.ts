@@ -14,6 +14,10 @@ import { PortfolioComponent } from './componentes/portfolio/portfolio.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EdicionPortfolioComponent } from './componentes/edicion-portfolio/edicion-portfolio.component';
 import { EdicionAcercaDeComponent } from './componentes/edicion-acerca-de/edicion-acerca-de.component';
+import { EdicionExterienciaComponent } from './componentes/edicion-exteriencia/edicion-exteriencia.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -29,6 +33,7 @@ import { EdicionAcercaDeComponent } from './componentes/edicion-acerca-de/edicio
     PortfolioComponent,
     EdicionPortfolioComponent,
     EdicionAcercaDeComponent,
+    EdicionExterienciaComponent,
   
   ],
   imports: [
@@ -36,7 +41,10 @@ import { EdicionAcercaDeComponent } from './componentes/edicion-acerca-de/edicio
     FormsModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DragDropModule,
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,7 +11,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-size: 16px;
+    font-size: 14px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: var(--color-secundario);
 }
@@ -181,7 +181,7 @@ article {
     margin-top: 2em;
     /*Para evitar que sean muy largos ponemos una
      altura maxima y la posibilidad de scroll*/
-     max-height: 20rem;
+    height: 15rem;
     overflow-y:auto;
 }
 
@@ -318,6 +318,17 @@ input, textarea{
 @media only screen and (max-width: 575px) {
     * {
         font-size: 8px;
+    }
+
+
+}
+
+
+
+/* Tablets */
+@media only screen and (max-width: 1000px) {
+    * {
+        font-size: 10px;
     }
 
 
