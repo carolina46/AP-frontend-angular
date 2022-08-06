@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ReadVarExpr } from '@angular/compiler';
 import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
 import { FormsModule } from '@angular/forms';
+import { NotificacionesService } from 'src/app/servicios/notificaciones.service';
 
 @Component({
   selector: 'app-edicion-acerca-de',
@@ -26,29 +27,43 @@ export class EdicionAcercaDeComponent implements OnInit {
   //Para controlar el formulario de edicion de datos
   edicionDatosDePerfil: boolean = false;
 
+  //resguardo de datos por si hay un error en el servidor
+  nombreCompleto: string = "";
+  titulo: string = "";
+  informacionPersonal: string = "";
+
 
   //Modelo acercaDe
   acercaDe: AcercaDe = {
     id: 0,
     banner: "./assets/banner.jpg",
     fotoPerfil: "./assets/fotoPerfil.jpg",
-    nombreCompleto: "Carolina Veronica Perez",
+    nombreCompleto: "",
     titulo: "",
-    informacionPersonal: "Agregar información personal",
+    informacionPersonal: ""
   };
 
   constructor(private acercaDeservice: AcercaDeService,
-    private sanitizer: DomSanitizer) {
+    private sanitizer: DomSanitizer,
+    private notificacionesService: NotificacionesService) {
 
   }
 
   ngOnInit(): void {
     //Obtengo los datos de Acerca de del servidor
-    this.acercaDeservice.obtenerDatosAcercaDe().subscribe(datos => { this.acercaDe = datos; });
+    this.acercaDeservice.obtenerDatosAcercaDe().subscribe(datos => {
+      if (datos != undefined) {
+        if (datos.banner == "") datos.banner = "./assets/banner.jpg";
+        if (datos.fotoPerfil == "") datos.fotoPerfil = "./assets/fotoPerfil.jpg";
+        this.acercaDe = datos;
+      }
+    });
+
+
   }
 
 
-   //______________Carga de imagen____________________________
+  //______________Carga de imagen____________________________
 
   //Permite cargar una nueva imagen cuando se toca
   //el boton editar de alguna imagen del html
@@ -84,11 +99,21 @@ export class EdicionAcercaDeComponent implements OnInit {
   })
 
 
-  //____________________________banner____________________________
+  //___________BANNER____________________________
 
   aceptarNuevoBanner() {
     this.nuevaImagen[0] = false;
-    this.acercaDeservice.guaradarAcercaDe(this.acercaDe).subscribe();
+    this.acercaDeservice.guaradarAcercaDe(this.acercaDe).subscribe(data => {
+      if (data) {
+        this.notificacionesService.showSuccess("Se guardado el cambio", "Nueva imagen del Banner");
+      }
+      else {
+        this.notificacionesService.showError("No se pudo gardar el cambio", "Nueva imagen del Banner");
+        this.acercaDe.banner = this.imagenTemporal[0];
+      }
+    }
+    );
+
   }
 
   cancelarNuevoBanner() {
@@ -97,12 +122,20 @@ export class EdicionAcercaDeComponent implements OnInit {
   }
 
 
-  //____________________________Foto de perfil____________________________
+  //_____FOTO DE PERFIL____________________________
 
   aceptarNuevaFotoDePerfil() {
-    this.nuevaImagen[1] = false;
-    console.log(this.acercaDe);
-    this.acercaDeservice.guaradarAcercaDe(this.acercaDe).subscribe();
+    
+    this.acercaDeservice.guaradarAcercaDe(this.acercaDe).subscribe(data => {
+      this.nuevaImagen[1] = false;
+      if (data) { 
+        this.notificacionesService.showSuccess("Se guardado el cambio", "Nueva foto de perfil"); }
+      else {
+        this.notificacionesService.showError("No se pudo gardar el cambio", "Nueva foto de perfil");
+        this.acercaDe.fotoPerfil = this.imagenTemporal[1];
+      }
+    }
+    );
   }
 
   cancelarNuevaFotoDePerfil() {
@@ -111,19 +144,32 @@ export class EdicionAcercaDeComponent implements OnInit {
   }
 
 
-  //____________________________Datos de perfil____________________________
+  //_________INFROMACION PERSONAL____________________________
   editarDatosDePerfil() {
     this.edicionDatosDePerfil = true;
-
+    this.nombreCompleto = this.acercaDe.nombreCompleto;
+    this.titulo = this.acercaDe.titulo;
+    this.informacionPersonal = this.acercaDe.informacionPersonal;
   }
 
   guardarDatosPerefil() {
-    console.log(this.acercaDe);
-    this.acercaDeservice.guaradarAcercaDe(this.acercaDe).subscribe();
-    this.edicionDatosDePerfil = false;
+    this.acercaDeservice.guaradarAcercaDe(this.acercaDe).subscribe(data => {
+      if (data) { this.notificacionesService.showSuccess("Se guardaron los cambios", "Información personal"); }
+      else {
+        this.acercaDe.nombreCompleto = this.nombreCompleto;
+        this.acercaDe.titulo = this.titulo;
+        this.acercaDe.informacionPersonal = this.informacionPersonal;
+        this.notificacionesService.showError("No se pudo gardar los cambios", "Información personal");
+      }
+      this.edicionDatosDePerfil = false;
+    });
 
   }
+
   cancelarDatosPerefil() {
+    this.acercaDe.nombreCompleto = this.nombreCompleto;
+    this.acercaDe.titulo = this.titulo;
+    this.acercaDe.informacionPersonal = this.informacionPersonal;
     this.edicionDatosDePerfil = false;
   }
 

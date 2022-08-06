@@ -80,11 +80,14 @@
             <!--INFORMACION ACTUAL DE LA PERSONA-->
             <div *ngIf="!edicionDatosDePerfil">
                 <!--BOTON EDICION INFORMACION DE LA PERSONA-->
+                <h1 *ngIf="acercaDe.nombreCompleto.length == 0  && acercaDe.titulo.length == 0 ">
+                    Información personal
+                </h1>
                 <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR" (click)="editarDatosDePerfil()">
                 <!--INFORMACION DE LA PERSONA-->
                 <h1 id="nombre">{{acercaDe.nombreCompleto}}</h1>
                 <h2>{{acercaDe.titulo}}</h2>
-                <p class="descripcion">{{acercaDe.informacionPersonal}}</p>
+                <p  *ngIf="acercaDe.informacionPersonal.length!=0" class="descripcion">{{acercaDe.informacionPersonal}}</p>
             </div>
             <!--EDICION INFORMACION DE LA PERSONA-->
             <div *ngIf="edicionDatosDePerfil">
