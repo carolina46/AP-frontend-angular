@@ -11,29 +11,39 @@ import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
 
 export class AcercaDeComponent implements OnInit {
 
- 
+
   //Modelo acercaDe
   acercaDe: AcercaDe = {
-    id : 0,
-    banner : "./assets/banner.jpg",
-    fotoPerfil : "./assets/fotoPerfil.jpg",
-    nombreCompleto : "Nombre completo",
-    titulo : "Título obtenido",
-    informacionPersonal :"Descripción resumida de su información personal"
+    id: 0,
+    banner: "./assets/banner.jpg",
+    fotoPerfil: "./assets/fotoPerfil.jpg",
+    nombreCompleto: "Nombre completo",
+    titulo: "Título obtenido",
+    informacionPersonal: "Descripción resumida de su información personal"
   };
 
-  constructor(private acercaDeservice: AcercaDeService) {}
+  constructor(private acercaDeservice: AcercaDeService) { }
 
   ngOnInit(): void {
     //Obtengo los datos de Acerca de
     this.acercaDeservice.obtenerDatosAcercaDe().subscribe(datos => {
-      if(datos!=null){
-        if (datos.banner == null) {datos.banner = "./assets/banner.jpg"};
-        if (datos.fotoPerfil == null) {datos.fotoPerfil = "./assets/fotoPerfil.jpg"};
-        if (datos.nombreCompleto == null) {datos.nombreCompleto = "Nombre completo"};
-        if (datos.titulo == null) {datos.titulo = "Título obtenido"};
-        if (datos.informacionPersonal == null) {datos.informacionPersonal = "Descripción resumida de su información personal"};
+      if (datos != null) {
+        if (datos.banner.length == 0) { datos.banner = "./assets/banner.jpg" };
+        if (datos.fotoPerfil.length == 0) { datos.fotoPerfil = "./assets/fotoPerfil.jpg" };
+        if (datos.nombreCompleto.length == 0) { datos.nombreCompleto = "Nombre completo" };
+        if (datos.titulo.length == 0) { datos.titulo = "Título obtenido" };
+        if (datos.informacionPersonal.length == 0) { datos.informacionPersonal = "Descripción resumida de su información personal" };
         this.acercaDe = datos;
+      }
+      else {
+        this.acercaDe = {
+          id: 0,
+          banner: "./assets/banner.jpg",
+          fotoPerfil: "./assets/fotoPerfil.jpg",
+          nombreCompleto: "Nombre completo",
+          titulo: "Título obtenido",
+          informacionPersonal: "Descripción resumida de su información personal"
+        };
       }
     });
   }
