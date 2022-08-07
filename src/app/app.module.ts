@@ -20,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-import { VentanaConfirmacionComponent } from './componentes/editarPortfolio/ventana-confirmacion/ventana-confirmacion.component' ;
+import { VentanaConfirmacionComponent } from './componentes/editarPortfolio/ventana-confirmacion/ventana-confirmacion.component';
+import { EdicionEducacionComponent } from './componentes/editarPortfolio/edicion-educacion/edicion-educacion.component' ;
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { VentanaConfirmacionComponent } from './componentes/editarPortfolio/vent
     EdicionAcercaDeComponent,
     EdicionExterienciaComponent,
     VentanaConfirmacionComponent,
+    EdicionEducacionComponent,
   
   ],
   imports: [
