@@ -1,27 +1,15 @@
 <section id="educacion">
-
     <div class="contenedorTitulo">
         <h1 class="titulo">Educación</h1>
-        <a *ngIf="esEdicion" href=""><img id="agregarEnTitulo" class="iconoPanelEdicion" src="./assets/agregar.png"
-                alt="AGREGAR"></a>
     </div>
-
-
     <div class="contenedorArticles">
         <article *ngFor="let edu of educacion">
-            <div *ngIf="esEdicion" class="panelEdicionArticle">
-                <a href=""><img class="iconoPanelEdicion" src="./assets/editar.png"
-                        alt="EDITAR"></a>
-                <a href=""><img class="iconoPanelEdicion" src="./assets/eliminar.png"
-                        alt="ELIMINAR"></a>
-            </div>
-            <img class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional">
-
-            <h2 class="institucionArticle">{{edu.nombreInstitucion}}</h2>
-            <h3 class="tituloArticle">{{edu.tituloObtenido}}</h3>
-            <h3 class="fechaArticle">Desde {{edu.desde}}</h3>
-            <h3 class="fechaArticle">Desde {{edu.hasta}}</h3>
-
+            <div class="contenedorLogoInstitucional" ><img class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional"></div>
+            <h1 class="institucionArticle">{{edu.nombreInstitucion}}</h1>
+            <h2 class="tituloArticle">{{edu.tituloObtenido}}</h2>
+            <h3 class="fechaArticle">Desde {{edu.desde | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="edu.hasta!=null" class="fechaArticle">Hasta {{edu.hasta | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="edu.hasta==null" class="fechaArticle">Hasta actualidad</h3>
         </article>
     </div>
 </section>
