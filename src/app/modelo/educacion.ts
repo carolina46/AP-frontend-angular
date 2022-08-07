@@ -5,4 +5,5 @@ export interface Educacion {
     logoInstitucional : string;
     desde : Date;
     hasta : Date;
+    posicion : number;
 }
