@@ -3,6 +3,6 @@ export interface Educacion {
     nombreInstitucion : string;
     tituloObtenido : string;
     logoInstitucional : string;
-    desde : string;
-    hasta : string;
+    desde : Date;
+    hasta : Date;
 }
