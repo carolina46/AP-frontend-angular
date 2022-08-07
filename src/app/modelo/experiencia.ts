@@ -3,8 +3,8 @@ export interface Experiencia {
     nombreLugarDeTrabajo : string;
     nombrePuesto : string;
     logoEmpresa : string;
-    desde : string;
-    hasta : string;
+    desde : Date;
+    hasta : Date;
     descripcionActividades : string;
     posicion : number;
 }

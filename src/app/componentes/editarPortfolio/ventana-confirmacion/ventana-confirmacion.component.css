@@ -1,0 +1,20 @@
+#ventanaConfirmacion{
+   text-align: center;
+   width: 30rem;
+}
+
+.botonConfirmacion{
+    background-color: rgb(233, 219, 219);
+    color: black;
+    border-color:none;
+    border-radius: 10px;
+    padding: 1em;
+    width: 4rem;
+    margin: 1rem;
+
+}
+
+.botonConfirmacion :hover{
+    background-color: rgb(81, 79, 79);
+    color: aliceblue;
+}

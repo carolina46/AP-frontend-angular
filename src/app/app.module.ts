@@ -3,22 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MenuComponent } from './componentes/menu/menu.component';
-import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
-import { ExperienciaComponent } from './componentes/experiencia/experiencia.component';
-import { EducacionComponent } from './componentes/educacion/educacion.component';
-import { HabilidadesComponent } from './componentes/habilidades/habilidades.component';
-import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
+import { MenuComponent } from './componentes/mostrarPortfolio/menu/menu.component';
+import { AcercaDeComponent } from './componentes/mostrarPortfolio/acerca-de/acerca-de.component';
+import { ExperienciaComponent } from './componentes/mostrarPortfolio/experiencia/experiencia.component';
+import { EducacionComponent } from './componentes/mostrarPortfolio/educacion/educacion.component';
+import { HabilidadesComponent } from './componentes/mostrarPortfolio/habilidades/habilidades.component';
+import { ProyectosComponent } from './componentes/mostrarPortfolio/proyectos/proyectos.component';
 import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
-import { PortfolioComponent } from './componentes/portfolio/portfolio.component';
+import { PortfolioComponent } from './componentes/mostrarPortfolio/portfolio/portfolio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EdicionPortfolioComponent } from './componentes/edicion-portfolio/edicion-portfolio.component';
-import { EdicionAcercaDeComponent } from './componentes/edicion-acerca-de/edicion-acerca-de.component';
-import { EdicionExterienciaComponent } from './componentes/edicion-exteriencia/edicion-exteriencia.component';
+import { EdicionPortfolioComponent } from './componentes/editarPortfolio/edicion-portfolio/edicion-portfolio.component';
+import { EdicionAcercaDeComponent } from './componentes/editarPortfolio/edicion-acerca-de/edicion-acerca-de.component';
+import { EdicionExterienciaComponent } from './componentes/editarPortfolio/edicion-exteriencia/edicion-exteriencia.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { VentanaConfirmacionComponent } from './componentes/editarPortfolio/ventana-confirmacion/ventana-confirmacion.component' ;
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import { ToastrModule } from 'ngx-toastr';
     EdicionPortfolioComponent,
     EdicionAcercaDeComponent,
     EdicionExterienciaComponent,
+    VentanaConfirmacionComponent,
   
   ],
   imports: [
@@ -44,8 +47,11 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     DragDropModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule,
   ],
+  entryComponents: [VentanaConfirmacionComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

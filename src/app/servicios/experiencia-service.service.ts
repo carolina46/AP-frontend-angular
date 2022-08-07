@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Experiencia } from '../modelo/experiencia';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ExperienciaServiceService {
 
 
 
-  private url : string = 'http://localhost:8080/experiencia/';
+  private url: string = 'http://localhost:8080/experiencia/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -20,18 +20,33 @@ export class ExperienciaServiceService {
 
 
   /** GET: Listado de experiencia*/
-  listarExperiencias(): Observable<Experiencia[]>{
-    return this.http.get<Experiencia[]>(this.url + 'listar');
-
+  listarExperiencias(): Observable<Experiencia[]> {
+    return this.http.get<Experiencia[]>(this.url + 'listar').pipe(
+      catchError(this.handleError<Experiencia[]>('listarExperiencias', []))
+    );
   }
 
-/** POST: Guardo una experiencia"*/
- guaradarExperiencia (experiencia: Experiencia): Observable<Experiencia> {
-  return this.http.post<Experiencia>(this.url + 'agregar', experiencia, this.httpOptions);
+  /** POST: Guardo una experiencia"*/
+  guaradarExperiencia(experiencia: Experiencia): Observable<Experiencia> {
+    return this.http.post<Experiencia>(this.url + 'agregar', experiencia, this.httpOptions).pipe(
+      catchError(this.handleError<Experiencia>('guaradarExperiencia'))
+    );
+  }
+
+
+  eliminaExperiencia(experiencia: Experiencia) {
+    const url = `${this.url + "eliminar"}/${experiencia.id}`;
+    return this.http.delete<Boolean>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Boolean>('guaradarExperiencia', false))
+    );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} Fallo: ${error.message}`);
+      return of(result as T);
+    };
+
+
+  }
 }
-
-
-eliminaExperiencia(experiencia: Experiencia) {
-  const url = `${this.url + "eliminar"}/${experiencia.id}`;
-  return this.http.delete<Boolean>(url, this.httpOptions);
-}}

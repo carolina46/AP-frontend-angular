@@ -32,17 +32,8 @@
 
     </div>
 
-
-
-
-
-
-
     <!--SECCION INFORMACION DE PERFIL-->
     <div id="ContenedorInformacionDePerfil">
-
-
-
 
         <!--SECCION FOTO DE PERFIL-->
         <div id="contenedorFotoDePerfil">
@@ -87,7 +78,7 @@
                 <!--INFORMACION DE LA PERSONA-->
                 <h1 id="nombre">{{acercaDe.nombreCompleto}}</h1>
                 <h2>{{acercaDe.titulo}}</h2>
-                <p  *ngIf="acercaDe.informacionPersonal.length!=0" class="descripcion">{{acercaDe.informacionPersonal}}</p>
+                <p  *ngIf="acercaDe.informacionPersonal.length!=0" class="descripcionAcercaDe">{{acercaDe.informacionPersonal}}</p>
             </div>
             <!--EDICION INFORMACION DE LA PERSONA-->
             <div *ngIf="edicionDatosDePerfil">

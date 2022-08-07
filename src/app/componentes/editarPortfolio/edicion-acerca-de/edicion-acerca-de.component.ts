@@ -11,7 +11,7 @@ import { NotificacionesService } from 'src/app/servicios/notificaciones.service'
 @Component({
   selector: 'app-edicion-acerca-de',
   templateUrl: './edicion-acerca-de.component.html',
-  styleUrls: ['./edicion-acerca-de.component.css']
+  styleUrls: ['./edicion-acerca-de.component.css' ,  '../../mostrarPortfolio/acerca-de/acerca-de.component.css' ]
 })
 export class EdicionAcercaDeComponent implements OnInit {
 
