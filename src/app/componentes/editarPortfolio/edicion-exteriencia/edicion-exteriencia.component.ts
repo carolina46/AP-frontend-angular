@@ -17,7 +17,6 @@ export class EdicionExterienciaComponent implements OnInit {
 
   //Para controlar lo que se muestra en el panel de experiencia
   formularioExperiencia: boolean = false;
-  movimientoDeItems: boolean = false;
   //Para cambiar el titulo del formulario, agregar o modificar experiencia laboral
   accion: string = "";
   //Para contron de boton de guardar nueva o existente
@@ -25,7 +24,6 @@ export class EdicionExterienciaComponent implements OnInit {
 
   //Para guardar los datos del formulario
   nuevaExperiencia: any;
-  experienciaAuxiliar: any;
 
   //Listado de experiencias laborales
   experiencias: Experiencia[] = [];
@@ -143,7 +141,6 @@ export class EdicionExterienciaComponent implements OnInit {
 
   //------------------------------------------
   //------EDITAR EXPERIENCIA -----------------
-  //Inicializa el furmulario para modificar una experiencia existente
   mostrarFormularioEditarExperiencia(experiencia: Experiencia) {
     this.accion = "EDITAR EXPERIENCIA LABORAL"
     this.nuevaExperiencia = {

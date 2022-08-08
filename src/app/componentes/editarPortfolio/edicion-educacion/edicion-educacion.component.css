@@ -1,0 +1,50 @@
+#contenedorFormulario{
+    background: url("../../../../assets/seccion.jpg");
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+#formulario{
+    display: block;
+    text-align: center;
+    border-radius: 20px;
+    background-color: var(--color-primario);
+    box-shadow: 30px 30px 30px rgb(17, 18, 18);
+    border: solid 2px grey;
+    padding: 2em;
+    margin: 1em;
+}
+
+#cargarImagen{
+    cursor: pointer;
+}
+
+
+label{
+    width: 100%;
+    font-size: 1rem;
+    background-color: var(----color-primario);
+    margin-top: 1rem;
+    text-align: left;
+}
+
+input{
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background-color: var(----color-primario);
+    color: var(--color-secundario);
+    border: solid 1px white;
+}
+
+span{
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
