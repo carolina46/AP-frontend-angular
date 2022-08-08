@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Experiencia } from 'src/app/modelo/experiencia';
 import { ExperienciaServiceService } from 'src/app/servicios/experiencia-service.service';
-
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-experiencia',
