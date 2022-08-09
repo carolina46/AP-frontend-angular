@@ -24,6 +24,8 @@ export class EdicionExterienciaComponent implements OnInit {
 
   //Para guardar los datos del formulario
   nuevaExperiencia: any;
+  //Para control del imput de la fecha hasta true=seleccionado
+  fechaHasta : boolean = true;
 
   //Listado de experiencias laborales
   experiencias: Experiencia[] = [];
@@ -77,6 +79,7 @@ export class EdicionExterienciaComponent implements OnInit {
       posicion: this.experiencias.length,
 
     };
+    this.fechaHasta = false;
     this.formularioExperiencia = true;
     this.nueva = true;
   }
@@ -102,12 +105,8 @@ export class EdicionExterienciaComponent implements OnInit {
       }
       else {
         this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Nueva Experiencia");
-
       }
-
     }
-
-
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Nueva Experiencia");
     }
@@ -117,10 +116,11 @@ export class EdicionExterienciaComponent implements OnInit {
   cancelarExperiencia() { this.formularioExperiencia = false; }
 
   comprobarCamposObligatorios() {
+    
     return (this.nuevaExperiencia.nombreLugarDeTrabajo.length > 0 &&
       this.nuevaExperiencia.nombrePuesto.length > 0 &&
       this.nuevaExperiencia.descripcionActividades.length > 0 &&
-      this.nuevaExperiencia.desde.length != null)
+      this.nuevaExperiencia.desde != null && !(this.fechaHasta && this.nuevaExperiencia.hasta == null ))
   }
 
   comprobarFechas(desde: Date, hasta: Date) {
@@ -133,11 +133,6 @@ export class EdicionExterienciaComponent implements OnInit {
     }
 
   }
-
-
-
-
-
 
   //------------------------------------------
   //------EDITAR EXPERIENCIA -----------------
@@ -153,6 +148,7 @@ export class EdicionExterienciaComponent implements OnInit {
       descripcionActividades: experiencia.descripcionActividades,
       posicion: experiencia.posicion,
     }
+    this.fechaHasta = experiencia.hasta != null;
     if (experiencia.logoEmpresa.length == 0) {
       this.nuevaExperiencia.logoEmpresa = "./assets/mas.png";
     }
@@ -168,6 +164,9 @@ export class EdicionExterienciaComponent implements OnInit {
 
         if (this.nuevaExperiencia.logoEmpresa == "./assets/mas.png") {
           this.nuevaExperiencia.logoEmpresa = "";
+        }
+        if(!this.fechaHasta){
+          this.nuevaExperiencia.hasta = null;
         }
         this.experienciaService.guaradarExperiencia(this.nuevaExperiencia).subscribe(data => {
           this.experiencias.splice(this.nuevaExperiencia.posicion, 1, this.nuevaExperiencia);

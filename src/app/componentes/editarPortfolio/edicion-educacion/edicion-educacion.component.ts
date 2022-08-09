@@ -24,6 +24,8 @@ export class EdicionEducacionComponent implements OnInit {
 
   //Para guardar los datos del formulario
   educacionFormulario: any;
+  //Para control del imput de la fecha hasta true=seleccionado
+  fechaHasta : boolean = true;
 
   //Listado de educacion
   educacion: Educacion[] = [];
@@ -78,6 +80,7 @@ export class EdicionEducacionComponent implements OnInit {
       hasta: null,
       posicion: this.educacion.length,
     };
+    this.fechaHasta = false;
     this.formularioEducacion = true;
     this.nueva = true;
   }
@@ -121,8 +124,8 @@ export class EdicionEducacionComponent implements OnInit {
   comprobarCamposObligatorios() {
     return (this.educacionFormulario.nombreInstitucion.length > 0 &&
       this.educacionFormulario.tituloObtenido.length > 0 &&
-      this.educacionFormulario.desde.length != null && 
-      this.educacionFormulario.hasta.length != null)
+      this.educacionFormulario.desde != null && 
+      !(this.fechaHasta && this.educacionFormulario.hasta == null ))
   }
 
   //Comprobacion fechas: desde debe ser menor que hasta
@@ -145,7 +148,7 @@ export class EdicionEducacionComponent implements OnInit {
 
   //Inicializa el furmulario para modificar una educacion existente
   mostrarFormularioEditarEducacion(educacion: Educacion) {
-    this.accion = "EDITAR EDUCAIÓN"
+    this.accion = "EDITAR EDUCACIÓN"
     this.educacionFormulario = {
       id: educacion.id,
       nombreInstitucion: educacion.nombreInstitucion,
@@ -155,9 +158,11 @@ export class EdicionEducacionComponent implements OnInit {
       hasta: educacion.hasta,
       posicion: educacion.posicion,
     }
+    this.fechaHasta = educacion.hasta != null;
     if (educacion.logoInstitucional.length == 0) {
       this.educacionFormulario.logoInstitucional = "./assets/mas.png";
     }
+    
     this.nueva = false;
     this.formularioEducacion = true;
   }
@@ -168,6 +173,9 @@ export class EdicionEducacionComponent implements OnInit {
       if (this.comprobarFechas(this.educacionFormulario.desde, this.educacionFormulario.hasta)) {
         if (this.educacionFormulario.logoInstitucional == "./assets/mas.png") {
           this.educacionFormulario.logoInstitucional = "";
+        }
+        if(!this.fechaHasta){
+          this.educacionFormulario.hasta = null;
         }
         this.educacionService.guaradarEducacion(this.educacionFormulario).subscribe(data => {
           this.educacion.splice(this.educacionFormulario.posicion, 1, this.educacionFormulario);

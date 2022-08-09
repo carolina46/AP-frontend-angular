@@ -30,9 +30,15 @@
             <label for="desde" style="color: tomato; "> * Desde</label>
             <input id="desde" required [(ngModel)]="educacionFormulario.desde" type="date" name="bday">
 
-            <label for="hasta" style="color: tomato; " > * Hasta</label>
-            <input id="hasta" [(ngModel)]="educacionFormulario.hasta" type="date" name="bday">
-
+            <label class="container"> Terminó la educación
+                <input type="checkbox" [(ngModel)]="fechaHasta">
+                <span class="checkmark"></span>
+            </label>
+            <div *ngIf="fechaHasta">
+                <label for="hasta" style="color: tomato; "> * Hasta</label>
+                <input id="hasta" [(ngModel)]="educacionFormulario.hasta" type="date" name="bday">
+            </div>
+            
             <div class="contenedorBotones">
                 <button *ngIf="nueva" class="botonFormulario" type="button"
                     (click)="guardarNuevaEducacion()">Guardar</button>
@@ -62,7 +68,9 @@
             <h1 class="institucionArticle">{{edu.nombreInstitucion}}</h1>
             <h2 class="tituloArticle">{{edu.tituloObtenido}}</h2>
             <h3 class="fechaArticle">Desde {{edu.desde | date: 'dd/MM/yyyy'}}</h3>
-            <h3 class="fechaArticle">Hasta {{edu.hasta | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="edu.hasta!=null" class="fechaArticle">Hasta {{edu.hasta | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="edu.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
+            
         </article>
     </div>
 

@@ -4,7 +4,7 @@
     </div>
     <div class="contenedorArticles">
         <article *ngFor="let edu of educacion">
-            <div class="contenedorLogoInstitucional" ><img class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional"></div>
+            <div class="contenedorLogoInstitucional" ><img *ngIf="edu.logoInstitucional.length>0" class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional"></div>
             <h1 class="institucionArticle">{{edu.nombreInstitucion}}</h1>
             <h2 class="tituloArticle">{{edu.tituloObtenido}}</h2>
             <h3 class="fechaArticle">Desde {{edu.desde | date: 'dd/MM/yyyy'}}</h3>

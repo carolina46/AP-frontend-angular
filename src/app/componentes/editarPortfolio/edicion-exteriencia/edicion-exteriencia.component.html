@@ -24,27 +24,34 @@
 
 
             <label for="nombreLugarDeTrabajo" style="color: tomato; ">* Lugar de trabajo</label>
-            <input id="nombreLugarDeTrabajo"  [(ngModel)]="nuevaExperiencia.nombreLugarDeTrabajo" type="text">
-            
+            <input id="nombreLugarDeTrabajo" [(ngModel)]="nuevaExperiencia.nombreLugarDeTrabajo" type="text">
+
             <label for="puesto" style="color: tomato; "> * Puesto</label>
-            <input id="puesto" required  [(ngModel)]="nuevaExperiencia.nombrePuesto" type="text">
+            <input id="puesto" required [(ngModel)]="nuevaExperiencia.nombrePuesto" type="text">
 
             <label for="desde" style="color: tomato; "> * Desde</label>
             <input id="desde" required [(ngModel)]="nuevaExperiencia.desde" type="date" name="bday">
 
-            <label for="hasta">Hasta</label>
-            <input id="hasta" [(ngModel)]="nuevaExperiencia.hasta" type="date" name="bday">
-
+            <label class="container"> Terminó la experiencia laboral
+                <input type="checkbox" [(ngModel)]="fechaHasta">
+                <span class="checkmark"></span>
+            </label>
+            <div *ngIf="fechaHasta">
+                <label for="hasta" style="color: tomato; "> * Hasta</label>
+                <input id="hasta" [(ngModel)]="nuevaExperiencia.hasta" type="date" name="bday">
+            </div>
             <label for="descripcion" style="color: tomato; ">* Tareas realizadas</label>
-            <textarea id="descripcion" required  [(ngModel)]="nuevaExperiencia.descripcionActividades"></textarea>
+            <textarea id="descripcion" required [(ngModel)]="nuevaExperiencia.descripcionActividades"></textarea>
 
 
             <div class="contenedorBotones">
-                <button *ngIf="nueva"  class="botonFormulario" type="button" (click)="guardarNuevaExperiencia()">Guardar</button>
-                <button *ngIf="!nueva" class="botonFormulario" type="button" (click)="guardarCambiosExperiencia()">Guardar</button>
-                
+                <button *ngIf="nueva" class="botonFormulario" type="button"
+                    (click)="guardarNuevaExperiencia()">Guardar</button>
+                <button *ngIf="!nueva" class="botonFormulario" type="button"
+                    (click)="guardarCambiosExperiencia()">Guardar</button>
+
                 <button class="botonFormulario" type="button" (click)="cancelarExperiencia()">Cancelar</button>
-                
+
 
             </div>
         </div>
@@ -61,14 +68,16 @@
                 <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
                     (click)="mostrarVentanaConfirmacion(experiencia)">
                 <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER"
-                title="Seleccione y arrastre el elemento para cambiarlo de posición">
+                    title="Seleccione y arrastre el elemento para cambiarlo de posición">
             </div>
-            <div class="contenedorLogoInstitucional" ><img *ngIf="experiencia.logoEmpresa.length>0" class="logoInstitucional" [src]="experiencia.logoEmpresa" alt="Logo Institucional"></div>
+            <div class="contenedorLogoInstitucional"><img *ngIf="experiencia.logoEmpresa.length>0"
+                    class="logoInstitucional" [src]="experiencia.logoEmpresa" alt="Logo Institucional"></div>
             <h1 class="institucionArticle">{{experiencia.nombreLugarDeTrabajo}}</h1>
             <h2 class="tituloArticle">{{experiencia.nombrePuesto}}</h2>
             <h3 class="fechaArticle">Desde {{experiencia.desde | date: 'dd/MM/yyyy'}}</h3>
-            <h3 *ngIf="experiencia.hasta!=null" class="fechaArticle">Hasta {{experiencia.hasta | date: 'dd/MM/yyyy'}}</h3>
-            <h3 *ngIf="experiencia.hasta==null" class="fechaArticle">Hasta actualidad</h3>
+            <h3 *ngIf="experiencia.hasta!=null" class="fechaArticle">Hasta {{experiencia.hasta | date: 'dd/MM/yyyy'}}
+            </h3>
+            <h3 *ngIf="experiencia.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
             <p class="descripcion">{{experiencia.descripcionActividades}}</p>
         </article>
     </div>
