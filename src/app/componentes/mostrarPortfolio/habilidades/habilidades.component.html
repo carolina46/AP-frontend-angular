@@ -1,20 +1,11 @@
 <section>
     <div class="contenedorTitulo">
         <h1 class="titulo">Habilidades</h1>
-        <a *ngIf="esEdicion" href=""><img id="agregarEnTitulo" class="iconoPanelEdicion" src="./assets/agregar.png"
-                alt="AGREGAR"></a>
     </div>
     <div class="contenedorArticles" id="habilidades">
         <article *ngFor="let habilidad of habilidades">
-            <div *ngIf="esEdicion" class="panelEdicionArticle">
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/editar.png"
-                        alt="EDITAR"></a>
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/eliminar.png"
-                        alt="ELIMINAR"></a>
-            </div>
             <img class="Habilidad" [src]="habilidad.imagen" [alt]="habilidad.nombre">
             <progress [value]="habilidad.porcentajeDominio" max="100"> {{habilidad.porcentajeDominio}}</progress>
         </article>
     </div>
 </section>
-  
