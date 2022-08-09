@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Habilidad } from 'src/app/modelo/habilidad';
+import { HabilidadService } from 'src/app/servicios/habilidad.service';
 
 @Component({
   selector: 'app-habilidades',
@@ -9,55 +10,26 @@ import { Habilidad } from 'src/app/modelo/habilidad';
 })
 export class HabilidadesComponent implements OnInit {
 
-  esEdicion: boolean = false;
+  habilidades: Habilidad[] = []
 
-  habilidades: Habilidad[] = [
-    {
-      id: 1,
-      nombre: "html",
-      porcentajeDominio: 25,
-      imagen: "./assets/html.ico",
-    },
-    {
-      id: 2,
-      nombre: "css",
-      porcentajeDominio: 50,
-      imagen: "./assets/css.ico",
-    },
-    {
-      id: 3,
-      nombre: "java",
-      porcentajeDominio: 75,
-      imagen: "./assets/java.ico",
-    },
-    {
-      id: 4,
-      nombre: "git",
-      porcentajeDominio: 100,
-      imagen: "./assets/git.ico",
-    },
-    {
-      id: 5,
-      nombre: "angular",
-      porcentajeDominio: 25,
-      imagen: "./assets/angular.ico",
-    },
-    {
-      id: 6,
-      nombre: "python",
-      porcentajeDominio: 50,
-      imagen: "./assets/python.ico",
-    }
-
-  ]
-
-
-  constructor(private router: Router) {
-    if (this.router.url === '/edicionPortfolio')
-      this.esEdicion = true;
+  constructor(private habilidadService: HabilidadService) {
   }
 
   ngOnInit(): void {
+    this.habilidadService.listarHabilidades().subscribe(datos => {
+      //ordeno por posicion
+      datos.sort(function (a, b) {
+        if (a.posicion > b.posicion) {
+          return 1;
+        }
+        if (a.posicion < b.posicion) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+      this.habilidades = datos;
+    });
   }
 
 }
