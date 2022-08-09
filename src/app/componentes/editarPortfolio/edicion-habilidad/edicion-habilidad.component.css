@@ -1,0 +1,19 @@
+select{
+    width: 100%;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    border: solid 1px white;
+    border-radius: 10px;
+}
+
+option{
+  background-color:#2f3b45 ;
+  padding: 0.5rem;
+}
+
+
+.contenedorHabilidad{
+  padding: 1rem;
+}

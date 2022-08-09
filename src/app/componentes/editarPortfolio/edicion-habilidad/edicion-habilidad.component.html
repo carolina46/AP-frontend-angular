@@ -1,1 +1,66 @@
-<p>edicion-habilidad works!</p>
+<section>
+    <!------------TITULO------------>
+    <div class="contenedorTitulo">
+        <h1 class="titulo">Habilidad</h1>
+        <img *ngIf="!mostrarFormularioHabilidad" (click)="mostrarFormularioAgregarHabilidad()" id="agregarEnTitulo"
+            class="iconoPanelEdicion" src="./assets/agregar.png" alt="AGREGAR">
+    </div>
+
+    <!---------FORMULARIO HABILIDAD----------->
+    <div id="contenedorFormulario" *ngIf="mostrarFormularioHabilidad">
+        <div id="formulario">
+            <span>{{accion}}</span>
+            <p style="color: tomato; ">* Campos obligatorios</p>
+
+            <div>
+                <label style="color: tomato; ">* Imagen</label>
+                <label for="agregarImagen" id="contenedorImagen"><img id="cargarImagen"
+                        class="logoInstitucional" [src]="habilidadFormulario.imagen"
+                        alt="Imagen Habilidad"></label>
+                <input type="file" accept="image/png,image/jpeg,image/ico" class="inputImagen" id="agregarImagen"
+                    (change)="capturarImagen($event)">
+            </div>
+
+            <label for="nombre" style="color: tomato; ">* Nombre de la habilidad</label>
+            <input id="nombre" [(ngModel)]="habilidadFormulario.nombre" type="text">
+
+            <label for="porcentajeDominio" style="color: tomato; "> * Nivel de dominio</label>
+            <select id="porcentajeDominio" [(ngModel)]="habilidadFormulario.porcentajeDominio">
+                <option value="20">Básico</option>
+                <option value="40">Principiante</option>
+                <option value="60">Intermedio</option>
+                <option value="80">Avanzado</option>
+                <option value="100">Experto</option>
+            </select>
+            
+            <div class="contenedorBotones">
+                <button *ngIf="nueva" class="botonFormulario" type="button"
+                    (click)="guardarNuevaHabilidad()">Guardar</button>
+                <button *ngIf="!nueva" class="botonFormulario" type="button"
+                    (click)="guardarCambiosHabilidad()">Guardar</button>
+                <button class="botonFormulario" type="button" (click)="cancelarHabilidad()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!---------LISTADO DE HABILIDADES----------->
+    <!-- Listado de experiencia laboral-->
+    <div cdkDropList [cdkDropListData]="habilidades" (cdkDropListDropped)="drop($event)" class="contenedorArticles"
+        *ngIf="!mostrarFormularioHabilidad">
+        <article cdkDrag *ngFor="let habilidad of habilidades">
+            <div class="panelEdicionArticle">
+                <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
+                    (click)="mostrarFormularioEditarHabilidad(habilidad)">
+                <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
+                    (click)="mostrarVentanaConfirmacion(habilidad)">
+                <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER"
+                title="Seleccione y arrastre el elemento para cambiarlo de posición">
+            </div>
+
+            <div class="contenedorHabilidad">
+                <img class="habilidad" [src]="habilidad.imagen" [alt]="habilidad.nombre">
+                <progress [value]="habilidad.porcentajeDominio" max="100"> {{habilidad.porcentajeDominio}}</progress>
+            </div></article>
+    </div>
+
+</section>

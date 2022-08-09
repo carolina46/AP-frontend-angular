@@ -193,26 +193,48 @@ article {
 ::-webkit-scrollbar {
     display: none;
 }
-/*-------------------------------------------*/
+
+
+
+/*--------HABILIDAD-----------------------------------*/
 
 #habilidades {
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
 }
 
-.Habilidad {
-    height: 8em;
-    width: 8em;
-    border-radius: 0px;
-    border: none;
-    padding: 0em;
-    margin-bottom: 0em;
-    box-shadow: none;
+.contenedorHabilidad{
+    height: 10rem;
+    width: 100%;
+    text-align: center;
+}
+.contenedorHabilidad:hover{
+    padding: 1rem;
 }
 
-.Habilidad:hover {
-    height: 6em;
-    width: 6em;
-    margin-bottom: 1em;
+.habilidad {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 10px; 
+    padding-bottom: 1rem;
+}
+
+progress {
+    border-radius: 7px; 
+    width: 9rem;
+    height: 1rem;
+    box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+}
+ 
+progress::-webkit-progress-bar {
+  background-color: rgb(129, 129, 121);
+  border-radius: 5px;
+  box-shadow: 1px 1px 5px 3px rgba(132, 120, 120, 0.8);
+  
+}
+progress::-webkit-progress-value {
+  background-color: rgb(84, 208, 59);
+  border-radius: 5px;
+ 
 }
 
 
