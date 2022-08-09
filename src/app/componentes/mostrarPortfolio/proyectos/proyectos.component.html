@@ -1,17 +1,9 @@
 <section>
     <div class="contenedorTitulo">
         <h1 class="titulo">Proyectos</h1>
-        <a *ngIf="esEdicion" href=""><img id="agregarEnTitulo" class="iconoPanelEdicion" src="./assets/agregar.png"
-                alt="AGREGAR"></a>
     </div>
     <div class="contenedorArticles">
         <article *ngFor="let proyecto of proyectos">
-            <div *ngIf="esEdicion" class="panelEdicionArticle">
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/editar.png"
-                        alt="EDITAR"></a>
-                <a href=""><img class="iconoArticle" class="iconoPanelEdicion" src="./assets/eliminar.png"
-                        alt="ELIMINAR"></a>
-            </div>
             <h2 class="tituloArticle">{{proyecto.nombre}}</h2>
             <h3 class="fechaArticle">Desde {{proyecto.desde}}</h3>
             <h3 class="fechaArticle">Desde {{proyecto.hasta}}</h3>
