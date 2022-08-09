@@ -6,5 +6,5 @@ export interface Proyecto {
     hasta: String,
     link: String,
     imagenes: String[],
-
+    posicion : number;
 }
