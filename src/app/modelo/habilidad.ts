@@ -3,4 +3,5 @@ export interface Habilidad {
     nombre : String,
     porcentajeDominio : number,
     imagen : String,
+    posicion : number;
 }
