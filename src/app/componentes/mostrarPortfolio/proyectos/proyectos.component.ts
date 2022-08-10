@@ -31,17 +31,23 @@ export class ProyectosComponent implements OnInit {
         // a must be equal to b
         return 0;
       });
+      for(var i=0;i<datos.length; i++){this.imagenActual[i]=0;}
       this.proyectos = datos;
     });
+
+    
   }
 
-  imagenSiguiente(id : number){
-    this.imagenActual[id]= this.imagenActual[id] + 1;
+
+  //Gestion de la visualizacion de las imagenes de los proyectos
+  imagenSiguiente(p : Proyecto){
+    this.imagenActual[p.posicion] +=  1;
   }
 
-  imagenAnterior(id : number){
-    this.imagenActual[id]-=1;
+  imagenAnterior(p : Proyecto){
+    this.imagenActual[p.posicion]-=1;
 
   }
+
 
 }

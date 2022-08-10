@@ -1,1 +1,97 @@
-<p>edicion-proyecto works!</p>
+<section>
+    <!------------TITULO------------>
+    <div class="contenedorTitulo">
+        <h1 class="titulo">Proyectos</h1>
+        <img *ngIf="!mostrarFormularioProyecto" (click)="mostrarFormularioAgregarProyecto()" id="agregarEnTitulo"
+            class="iconoPanelEdicion" src="./assets/agregar.png" alt="AGREGAR">
+    </div>
+    <!---------FORMULARIO PROYECTO----------->
+    <div id="contenedorFormulario" *ngIf="mostrarFormularioProyecto">
+        <div id="formulario">
+            <span>{{accion}}</span>
+            <p style="color: tomato; ">* Campos obligatorios</p>
+            <div class="contenedorCapturarImagen">
+                <label for="imagenProyecto" id="contenedorBtCargarImagen">
+                    <img class="btCargarImagen" src="./assets/mas.png" alt="Agregar imagen">
+                </label>
+                <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="imagenProyecto"
+                    (change)="capturarImagen($event)">
+                <label id="labelProyecto">Imagenes del proyecto</label>
+            </div>
+
+            <div *ngIf="proyectoFormulario.imagenes.length>0" class="galeriaImagenesProyectos" cdkDropList
+                [cdkDropListData]="proyectoFormulario.imagenes" (cdkDropListDropped)="drop($event)">
+                <div cdkDrag *ngFor="let img of proyectoFormulario.imagenes; index as indexOfelement;" style="margin-bottom: 1rem;">
+                    <img class="imagenMuestraFormulario" [src]="img">
+                    <img class="iconoPanelEdicionProyecto" src="./assets/eliminar.png" alt="ELIMINAR"
+                        (click)="mostrarVentanaConfirmacionImagen(indexOfelement)">
+                    <img class="iconoPanelEdicionProyecto" src="./assets/mover.png" alt="MOVER"
+                        (click)="informarMovimiento()">
+                </div>
+
+            </div>
+
+            <label for="nombre" style="color: tomato; ">* Nombre del proyecto</label>
+            <input id="nombre" [(ngModel)]="proyectoFormulario.nombre" type="text">
+
+            <label for="descripcion" style="color: tomato; ">* Descripción del proyecto</label>
+            <textarea id="descripcion" required [(ngModel)]="proyectoFormulario.descripcion"></textarea>
+
+            <label for="link" style="color: tomato; "> * Link al proyecto</label>
+            <input id="link" required [(ngModel)]="proyectoFormulario.link" type="text">
+
+            <label for="desde" style="color: tomato; "> * Desde</label>
+            <input id="desde" required [(ngModel)]="proyectoFormulario.desde" type="date" name="bday">
+
+            <label class="container"> Terminó el proyecto
+                <input type="checkbox" [(ngModel)]="fechaHasta">
+                <span class="checkmark"></span>
+            </label>
+            <div *ngIf="fechaHasta">
+                <label for="hasta" style="color: tomato; "> * Hasta</label>
+                <input id="hasta" [(ngModel)]="proyectoFormulario.hasta" type="date" name="bday">
+            </div>
+
+            <div class="contenedorBotones">
+                <button *ngIf="nueva" class="botonFormulario" type="button"
+                    (click)="guardarNuevoProyecto()">Guardar</button>
+                <button *ngIf="!nueva" class="botonFormulario" type="button"
+                    (click)="guardarCambiosProyecto()">Guardar</button>
+                <button class="botonFormulario" type="button" (click)="cancelarProyecto()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!---------LISTADO DE PROYECTOS----------->
+    <div cdkDropList [cdkDropListData]="proyectos" (cdkDropListDropped)="drop($event)" class="contenedorArticles"
+        *ngIf="!mostrarFormularioProyecto">
+        <article cdkDrag *ngFor="let pro of proyectos">
+            <div class="panelEdicionArticle">
+                <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
+                    (click)="mostrarFormularioEditarProyecto(pro)">
+                <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
+                    (click)="mostrarVentanaConfirmacion(pro)">
+                <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER" (click)="informarMovimiento()">
+            </div>
+
+            <h2 class="tituloArticle">{{pro.nombre}}</h2>
+            <h3 class="fechaArticle">Desde {{pro.desde | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="pro.hasta!=null" class="fechaArticle">Hasta {{pro.hasta | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="pro.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
+
+
+            <div class="contenedorImagenProyecto1">
+
+                <div *ngIf="pro.imagenes.length>0" class="galeriaImagenes">
+                    <button class="btSyA" *ngIf="imagenActual[pro.posicion]>0" (click)="imagenAnterior(pro)"></button>
+                    <img class="imagenMuestraGaleria" [src]="pro.imagenes[imagenActual[pro.posicion]]" alt="">
+                    <button class="btSyA" *ngIf="imagenActual[pro.posicion]<pro.imagenes.length-1"
+                        (click)="imagenSiguiente(pro)"></button>
+                </div>
+            </div>
+
+            <p class="descripcion">{{pro.descripcion}}</p>
+            <a class="botonFormulario" [href]="pro.link" target="_blank">Mas informacion</a>
+        </article>
+    </div>
+</section>

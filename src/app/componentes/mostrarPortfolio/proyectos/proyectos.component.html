@@ -5,17 +5,24 @@
     <div class="contenedorArticles">
         <article *ngFor="let proyecto of proyectos">
             <h2 class="tituloArticle">{{proyecto.nombre}}</h2>
-            <h3 class="fechaArticle">Desde {{proyecto.desde}}</h3>
-            <h3 class="fechaArticle">Desde {{proyecto.hasta}}</h3>
+
+            <h3 class="fechaArticle">Desde  {{proyecto.desde | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="proyecto.hasta!=null" class="fechaArticle">Hasta  {{proyecto.hasta | date: 'dd/MM/yyyy'}}</h3>
+            <h3 *ngIf="proyecto.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
+            
         
-        <div *ngIf="proyecto.imagenes.length>0" class="galeriaImagenes">
-            <button *ngIf="imagenActual[proyecto.id]>0"  (click)="imagenAnterior(proyecto.id)">A</button>
-            <img class="imagenMuestra" [src]="proyecto.imagenes[imagenActual[proyecto.id]]" alt="">
-            <button *ngIf="imagenActual[proyecto.id]<proyecto.imagenes.length-1" (click)="imagenSiguiente(proyecto.id)">S</button>
-        </div>
+            <div class="contenedorImagenProyecto1">
+
+                <div *ngIf="proyecto.imagenes.length>0" class="galeriaImagenes">
+                    <button class="btSyA" *ngIf="imagenActual[proyecto.posicion]>0" (click)="imagenAnterior(proyecto)"></button>
+                    <img class="imagenMuestraGaleria" [src]="proyecto.imagenes[imagenActual[proyecto.posicion]]" alt="">
+                    <button class="btSyA" *ngIf="imagenActual[proyecto.posicion]<proyecto.imagenes.length-1"
+                        (click)="imagenSiguiente(proyecto)"></button>
+                </div>
+            </div>
         
             <p class="descripcion">{{proyecto.descripcion}}</p>
-            <a class="botonMasInformacion"  [href]="proyecto.link" target="_blank">Mas informacion</a>
+            <a class="botonFormulario"  [href]="proyecto.link" target="_blank">Mas informacion</a>
         </article>
     </div>
   </section>
