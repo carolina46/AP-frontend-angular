@@ -10,7 +10,10 @@ import { HabilidadService } from 'src/app/servicios/habilidad.service';
 })
 export class HabilidadesComponent implements OnInit {
 
-  habilidades: Habilidad[] = []
+  habilidades: Habilidad[] = [];
+  nivelConocimientos : Map<number,string> = new Map<number,string>();
+  
+  
 
   constructor(private habilidadService: HabilidadService) {
   }
@@ -30,6 +33,12 @@ export class HabilidadesComponent implements OnInit {
       });
       this.habilidades = datos;
     });
+
+    this.nivelConocimientos.set( 20, "Básico");
+    this.nivelConocimientos.set( 40, "Principiante");
+    this.nivelConocimientos.set( 60, "Intermedio");
+    this.nivelConocimientos.set( 80, "Avanzado");
+    this.nivelConocimientos.set( 100, "Experto");
   }
 
 }
