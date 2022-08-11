@@ -23,7 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { VentanaConfirmacionComponent } from './componentes/editarPortfolio/ventana-confirmacion/ventana-confirmacion.component';
 import { EdicionEducacionComponent } from './componentes/editarPortfolio/edicion-educacion/edicion-educacion.component';
 import { EdicionHabilidadComponent } from './componentes/editarPortfolio/edicion-habilidad/edicion-habilidad.component';
-import { EdicionProyectoComponent } from './componentes/editarPortfolio/edicion-proyecto/edicion-proyecto.component' ;
+import { EdicionProyectoComponent } from './componentes/editarPortfolio/edicion-proyecto/edicion-proyecto.component';
+import { EdicionRedesComponent } from './componentes/editarPortfolio/edicion-redes/edicion-redes.component' ;
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { EdicionProyectoComponent } from './componentes/editarPortfolio/edicion-
     EdicionEducacionComponent,
     EdicionHabilidadComponent,
     EdicionProyectoComponent,
+    EdicionRedesComponent,
   
   ],
   imports: [
