@@ -23,9 +23,9 @@ export class RedesService {
   }
 
   /** POST: Guardo datos de RedesSociales*/
-  guaradarRedesSociales(redesSociales: RedesSociales): Observable<Boolean> {
-    return this.http.post<Boolean>(this.url + 'guardar', redesSociales, this.httpOptions).pipe(
-      catchError(this.handleError<Boolean>('guaradarRedesSociales', false))
+  guaradarRedesSociales(redesSociales: RedesSociales): Observable<RedesSociales> {
+    return this.http.post<RedesSociales>(this.url + 'guardar', redesSociales, this.httpOptions).pipe(
+      catchError(this.handleError<RedesSociales>('guaradarRedesSociales'))
     );
   }
 

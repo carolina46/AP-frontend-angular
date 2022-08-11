@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.redesSocialesService.obtenerDatosResdesSociales().subscribe(datos =>{
-      if (datos != null) {
+      if (datos == null) {
         this.redesSociales = {
           id : 0,
           argentinaPrograma : 'https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa',

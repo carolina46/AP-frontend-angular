@@ -1,1 +1,47 @@
-<p>edicion-redes works!</p>
+<header>
+    <nav>
+        <div *ngIf="!mostrarFormulario">
+            <ul>
+                <li><a [href]="redesSociales.argentinaPrograma" target="_blank"><img id="logoArgProg"
+                            src="./assets/logoArgentinaProgramadddd.png" alt="Argentina Programa"></a></li>
+                <li><a [href]="redesSociales.facebook" target="_blank"><img class="icono" src="./assets/facebook.ico"
+                            alt="FACEBOOK"></a></li>
+                <li><a [href]="redesSociales.twitter" target="_blank"><img class="icono" src="./assets/twitter.ico"
+                            alt="TWITTER"></a></li>
+                <li><a [href]="redesSociales.instagram" target="_blank"><img class="icono" src="./assets/instagram.ico"
+                            alt="INSTAGRAM"></a></li>
+
+                <li><img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
+                        (click)="editarRedesSociales()"></li>
+
+                <li><a routerLink=""><img class="icono" src="./assets/logout.ico" alt="LOGOUT"></a></li>
+            </ul>
+        </div>
+        <div id="contenedorFormulario" *ngIf="mostrarFormulario">
+            <div id="formulario">
+                <span>EDITAR REDES SOCIALES</span>
+                
+    
+                   
+                <label for="argentinaPrograma">Argentina Programa</label>
+                <input id="argentinaPrograma" [(ngModel)]="formulario.argentinaPrograma" type="text">
+    
+                <label for="facebook">Facebook</label>
+                <input id="facebook" [(ngModel)]="formulario.facebook" type="text">
+                
+                <label for="twitter">Twitter</label>
+                <input id="twitter" [(ngModel)]="formulario.twitter" type="text">
+
+                <label for="instagram">Instragram</label>
+                <input id="instagram" [(ngModel)]="formulario.instagram" type="text">
+                
+                
+                <div class="contenedorBotones">
+                    <button class="botonFormulario" type="button" (click)="guardar()">Guardar</button>
+                    <button class="botonFormulario" type="button" (click)="cancelar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+    </nav>
+</header>
