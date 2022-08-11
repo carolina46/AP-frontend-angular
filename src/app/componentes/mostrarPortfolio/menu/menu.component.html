@@ -1,18 +1,16 @@
 <header>
     <nav>
         <ul>
-            <li><a [href]="redSocial.argentinaPrograma" target="_blank"><img id="logoArgProg"
+            <li><a [href]="redesSociales.argentinaPrograma" target="_blank"><img id="logoArgProg"
                         src="./assets/logoArgentinaProgramadddd.png" alt="Argentina Programa"></a></li>
-            <li><a [href]="redSocial.facebook" target="_blank"><img class="icono" src="./assets/facebook.ico"
+            <li><a [href]="redesSociales.facebook" target="_blank"><img class="icono" src="./assets/facebook.ico"
                         alt="FACEBOOK"></a></li>
-            <li><a [href]="redSocial.twitter" target="_blank"><img class="icono" src="./assets/twitter.ico"
+            <li><a [href]="redesSociales.twitter" target="_blank"><img class="icono" src="./assets/twitter.ico"
                         alt="TWITTER"></a></li>
-            <li><a [href]="redSocial.instagram" target="_blank"><img class="icono" src="./assets/instagram.ico"
+            <li><a [href]="redesSociales.instagram" target="_blank"><img class="icono" src="./assets/instagram.ico"
                         alt="INSTAGRAM"></a></li>
 
-            <li *ngIf="!esEdicion"><a routerLink="/iniciarSesion"><img class="icono" src="./assets/login.png"
-                        alt="LOGIN"></a></li>
-            <li *ngIf="esEdicion"><a routerLink=""><img class="icono" src="./assets/logout.ico" alt="LOGOUT"></a></li>
+            <li><a routerLink="/iniciarSesion"><img class="icono" src="./assets/login.png" alt="LOGIN"></a></li>
         </ul>
     </nav>
 </header>

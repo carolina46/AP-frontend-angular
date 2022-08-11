@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RedSocial } from 'src/app/modelo/red-social';
+import { RedesSociales } from 'src/app/modelo/redesSociales';
 import { Router } from '@angular/router'
+import { RedesService } from 'src/app/servicios/redes.service';
 
 
 @Component({
@@ -10,22 +11,33 @@ import { Router } from '@angular/router'
 })
 export class MenuComponent implements OnInit {
 
-  esEdicion : boolean = false;
-
-  redSocial : RedSocial = {
-    id : 1,
+  
+  redesSociales : RedesSociales ={
+    id : 0,
     argentinaPrograma : 'https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa',
     facebook : 'https://www.facebook.com/',
     twitter : 'https://www.twitter.com/',
     instagram : 'https://www.instagram.com/',
-  }
+  };
 
-  constructor(private router: Router) { 
-    if(this.router.url === '/edicionPortfolio')
-      this.esEdicion = true;
-  }
+  constructor(private redesSocialesService : RedesService) { }
 
   ngOnInit(): void {
+    this.redesSocialesService.obtenerDatosResdesSociales().subscribe(datos =>{
+      if (datos != null) {
+        this.redesSociales = {
+          id : 0,
+          argentinaPrograma : 'https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa',
+          facebook : 'https://www.facebook.com/',
+          twitter : 'https://www.twitter.com/',
+          instagram : 'https://www.instagram.com/',
+        }
+      }
+      else{
+        this.redesSociales=datos;
+      }
+      
+    });
   }
 
 }

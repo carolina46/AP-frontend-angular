@@ -1,4 +1,4 @@
-export interface RedSocial {
+export interface RedesSociales {
     id : number;
     argentinaPrograma : string;
     facebook : string;
