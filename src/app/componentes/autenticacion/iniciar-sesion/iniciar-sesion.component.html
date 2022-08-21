@@ -1,0 +1,25 @@
+<section>
+    <div class="contenedorTitulo">
+        <h1 class="titulo">Iniciar sesión</h1>
+    </div>
+    <div class="contenedorFormulario">
+        <div class="contenidoFormulario">
+
+            <div class="contenedorCampo">
+                <label for="nombre">Nombre de usuario</label>
+                <input id="nombre" type="text" [(ngModel)]="usuario.nombre">
+            </div>
+
+            <div class="contenedorCampo">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" id="contraseña" [(ngModel)]="usuario.clave">
+            </div>
+
+            <div class="contenedorBotones">
+                <button class="botonFormulario" type="button" (click)="iniciarSesion()">Acceder</button>
+                <button class="botonFormulario" routerLink="">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</section>

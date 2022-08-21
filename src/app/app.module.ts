@@ -9,7 +9,7 @@ import { ExperienciaComponent } from './componentes/mostrarPortfolio/experiencia
 import { EducacionComponent } from './componentes/mostrarPortfolio/educacion/educacion.component';
 import { HabilidadesComponent } from './componentes/mostrarPortfolio/habilidades/habilidades.component';
 import { ProyectosComponent } from './componentes/mostrarPortfolio/proyectos/proyectos.component';
-import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
+import { IniciarSesionComponent } from './componentes/autenticacion/iniciar-sesion/iniciar-sesion.component';
 import { PortfolioComponent } from './componentes/mostrarPortfolio/portfolio/portfolio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EdicionPortfolioComponent } from './componentes/editarPortfolio/edicion-portfolio/edicion-portfolio.component';

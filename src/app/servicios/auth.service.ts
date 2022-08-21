@@ -1,32 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Usuario } from '../modelo/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
- // uri = 'https://localhost:3000/api'; //remplazar con la api que corresponda
+ uri = 'http://localhost:8080/autenticacion/'; 
 
- // token : any;
+ token : any;
 
- constructor() { }
-  //constructor(private http: HttpClient, private router: Router) { }
+constructor(private http: HttpClient, private router: Router) { }
 
- /* login(usuario: string, contraseña: string) {
-    this.http.post(this.uri + '/autenticacion', { nombre: usuario, contraseña: contraseña })
+  login(usuario: Usuario){
+    this.http.post(this.uri, usuario)
       .subscribe((resp: any) => {
         this.router.navigate(['edicionPortfolio']);
         localStorage.setItem('auth_token', resp.token);
-      })
+      });
   }
 
   logout(){
     localStorage.removeItem('token');
   }
 
-  public get logIn(): boolean{
-    return(localStorage.getItem('token') !==null);
-  }*/
+  public isLoggedIn(): boolean{
+    return(localStorage.getItem('token') !== null);
+  }
+
+  
 }

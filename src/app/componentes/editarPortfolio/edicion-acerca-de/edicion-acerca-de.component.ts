@@ -1,11 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AcercaDe } from 'src/app/modelo/acerca-de';
-import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ReadVarExpr } from '@angular/compiler';
 import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
-import { FormsModule } from '@angular/forms';
 import { NotificacionesService } from 'src/app/servicios/notificaciones.service';
 
 @Component({
