@@ -8,8 +8,8 @@ import { AuthGuard } from './componentes/autenticacion/auth.guard';
 const routes: Routes = [
 {path: '', component: PortfolioComponent },
 {path: 'iniciarSesion', component: IniciarSesionComponent},
-{path: 'edicionPortfolio', component: EdicionPortfolioComponent, canActivate: [AuthGuard]},
-
+{path: 'edicionPortfolio', component: EdicionPortfolioComponent, canActivate: [AuthGuard], data: { expectedRol: ['admin'] } },
+{ path: '**', redirectTo: '', pathMatch: 'full' }
 
 ];
 

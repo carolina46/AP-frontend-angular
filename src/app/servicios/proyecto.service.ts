@@ -8,7 +8,7 @@ import { Proyecto } from '../modelo/proyecto';
 })
 export class ProyectoService {
 
-  private url: string = 'http://localhost:8080/proyecto/';
+  private url: string = 'https://ap--carolina-perez-backend.herokuapp.com/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -19,21 +19,21 @@ export class ProyectoService {
 
   /** GET: Listado de proyectos*/
   listarProyectos(): Observable<Proyecto[]> {
-    return this.http.get<Proyecto[]>(this.url + 'listar').pipe(
+    return this.http.get<Proyecto[]>(this.url + 'portfolio/proyectos').pipe(
       catchError(this.handleError<Proyecto[]>('listarProyectos', []))
     );
   }
 
   /** POST: Guardo un proyecto"*/
   guaradarProyecto(proyecto: Proyecto): Observable<Proyecto> {
-    return this.http.post<Proyecto>(this.url + 'agregar', proyecto, this.httpOptions).pipe(
+    return this.http.post<Proyecto>(this.url + 'editarPortfolio/proyecto/agregar', proyecto, this.httpOptions).pipe(
       catchError(this.handleError<Proyecto>('guaradarProyecto'))
     );
   }
 
   /** DELETE: Elimino un proyecto */
   eliminaProyecto(proyecto: Proyecto) {
-    const url = `${this.url + "eliminar"}/${proyecto.id}`;
+    const url = `${this.url + "editarPortfolio/proyecto/eliminar"}/${proyecto.id}`;
     return this.http.delete<Boolean>(url, this.httpOptions).pipe(
       catchError(this.handleError<Boolean>('guaradarProyecto', false))
     );

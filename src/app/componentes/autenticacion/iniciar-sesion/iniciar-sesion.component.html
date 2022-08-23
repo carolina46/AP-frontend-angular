@@ -4,22 +4,30 @@
     </div>
     <div class="contenedorFormulario">
         <div class="contenidoFormulario">
-
-            <div class="contenedorCampo">
-                <label for="nombre">Nombre de usuario</label>
-                <input id="nombre" type="text" [(ngModel)]="usuario.nombre">
+            <div *ngIf="isLogged; else formularioInicioSesion">
+                <h1>Ya has iniciado sesion</h1>
+                <button class="botonFormulario" type="button" (click)="logOut()">Cerrar Sesion</button>
+                <button class="botonFormulario" routerLink="/edicionPortfolio">Acceder</button>
             </div>
 
-            <div class="contenedorCampo">
-                <label for="contraseña">Contraseña</label>
-                <input type="password" id="contraseña" [(ngModel)]="usuario.clave">
-            </div>
+            <ng-template #formularioInicioSesion>
+                <div class="contenedorCampo">
+                    <label for="nombre">Nombre de usuario</label>
+                    <input id="nombre" type="text" [(ngModel)]="usuario.nombreUsuario">
+                </div>
 
-            <div class="contenedorBotones">
-                <button class="botonFormulario" type="button" (click)="iniciarSesion()">Acceder</button>
-                <button class="botonFormulario" routerLink="">Cancelar</button>
-            </div>
+                <div class="contenedorCampo">
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" id="contraseña" [(ngModel)]="usuario.clave">
+                </div>
 
+                <div class="contenedorBotones">
+                    <button class="botonFormulario" type="button" (click)="onLogin()">Acceder</button>
+                    <button class="botonFormulario" routerLink="">Cancelar</button>
+                </div>
+            </ng-template>
         </div>
+
+
     </div>
 </section>

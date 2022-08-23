@@ -14,7 +14,7 @@
                 <li><img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
                         (click)="editarRedesSociales()"></li>
 
-                <li><a routerLink=""><img class="icono" src="./assets/logout.ico" alt="LOGOUT"></a></li>
+                <li><a  (click)="logOut()"><img class="icono" src="./assets/logout.ico" alt="LOGOUT" ></a></li>
             </ul>
         </div>
         <div id="contenedorFormulario" *ngIf="mostrarFormulario">

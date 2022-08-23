@@ -11,7 +11,7 @@ import { AcercaDe } from '../modelo/acerca-de';
 
 export class AcercaDeService {
 
-  private url : string = 'http://localhost:8080/acercaDe/';
+  private url : string = 'https://ap--carolina-perez-backend.herokuapp.com/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -22,14 +22,14 @@ export class AcercaDeService {
 
   /** GET: Obtengo la informacion de "Acerca de"*/
   obtenerDatosAcercaDe(): Observable<AcercaDe>{
-    return this.http.get<AcercaDe>(this.url + 'obtener').pipe(
+    return this.http.get<AcercaDe>(this.url + 'portfolio/acercaDe').pipe(
       catchError(this.handleError<AcercaDe>('obtenerDatosAcercaDe'))
     );
 }
 
 /** POST: Guardo datos de "Acerca de"*/
  guaradarAcercaDe (acercaDe: AcercaDe): Observable<Boolean> {
-  return this.http.post<Boolean>(this.url + 'guardar', acercaDe, this.httpOptions).pipe(
+  return this.http.post<Boolean>(this.url + 'editarPortfolio/acercaDe/guardar', acercaDe, this.httpOptions).pipe(
     catchError(this.handleError<Boolean>('guaradarAcercaDe', false))
   );
 }

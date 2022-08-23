@@ -25,6 +25,7 @@ import { EdicionEducacionComponent } from './componentes/editarPortfolio/edicion
 import { EdicionHabilidadComponent } from './componentes/editarPortfolio/edicion-habilidad/edicion-habilidad.component';
 import { EdicionProyectoComponent } from './componentes/editarPortfolio/edicion-proyecto/edicion-proyecto.component';
 import { EdicionRedesComponent } from './componentes/editarPortfolio/edicion-redes/edicion-redes.component' ;
+import { interceptorProvider } from './interceptors/prod-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,7 @@ import { EdicionRedesComponent } from './componentes/editarPortfolio/edicion-red
     MatButtonModule,
   ],
   entryComponents: [VentanaConfirmacionComponent],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

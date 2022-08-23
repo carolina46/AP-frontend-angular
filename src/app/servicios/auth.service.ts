@@ -1,34 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Usuario } from '../modelo/usuario';
+import { LoginUsuario } from '../modelo/LoginUsuario';
+import { Observable } from 'rxjs';
+import { JwtDTO } from '../modelo/JwtDTO';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
- uri = 'http://localhost:8080/autenticacion/'; 
+ uri = 'https://ap--carolina-perez-backend.herokuapp.com/portfolio/auth/'; 
 
- token : any;
+ constructor(private http: HttpClient) { }
 
-constructor(private http: HttpClient, private router: Router) { }
-
-  login(usuario: Usuario){
-    this.http.post(this.uri, usuario)
-      .subscribe((resp: any) => {
-        this.router.navigate(['edicionPortfolio']);
-        localStorage.setItem('auth_token', resp.token);
-      });
+   public login(loginUsuario: LoginUsuario): Observable<JwtDTO> {
+    return this.http.post<JwtDTO>(this.uri + 'login', loginUsuario);
   }
-
-  logout(){
-    localStorage.removeItem('token');
-  }
-
-  public isLoggedIn(): boolean{
-    return(localStorage.getItem('token') !== null);
-  }
-
   
 }

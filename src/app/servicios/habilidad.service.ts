@@ -8,7 +8,7 @@ import { Habilidad } from '../modelo/habilidad';
 })
 export class HabilidadService {
 
-  private url: string = 'http://localhost:8080/habilidad/';
+  private url: string = 'https://ap--carolina-perez-backend.herokuapp.com/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -18,21 +18,21 @@ export class HabilidadService {
 
   /** GET: Listado de habilidades*/
   listarHabilidades(): Observable<Habilidad[]> {
-    return this.http.get<Habilidad[]>(this.url + 'listar').pipe(
+    return this.http.get<Habilidad[]>(this.url + 'portfolio/habilidad').pipe(
       catchError(this.handleError<Habilidad[]>('listarHabilidades', []))
     );
   }
 
   /** POST: Guardo una Habilidad"*/
   guaradarHabilidad(habilidad: Habilidad): Observable<Habilidad> {
-    return this.http.post<Habilidad>(this.url + 'agregar', habilidad, this.httpOptions).pipe(
+    return this.http.post<Habilidad>(this.url + 'editarPortfolio/habilidad/agregar', habilidad, this.httpOptions).pipe(
       catchError(this.handleError<Habilidad>('guaradarHabilidad'))
     );
   }
 
   /** DELETE: Elimino una Habilidad"*/
   eliminaHabilidad(habilidad: Habilidad) {
-    const url = `${this.url + "eliminar"}/${habilidad.id}`;
+    const url = `${this.url + "editarPortfolio/habilidad/eliminar"}/${habilidad.id}`;
     return this.http.delete<Boolean>(url, this.httpOptions).pipe(
       catchError(this.handleError<Boolean>('guaradarHabilidad', false))
     );

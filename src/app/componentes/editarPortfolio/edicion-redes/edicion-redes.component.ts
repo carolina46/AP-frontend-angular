@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RedesSociales } from 'src/app/modelo/redesSociales';
 import { NotificacionesService } from 'src/app/servicios/notificaciones.service';
 import { RedesService } from 'src/app/servicios/redes.service';
+import { TokenService } from 'src/app/servicios/token.service';
 
 @Component({
   selector: 'app-edicion-redes',
@@ -22,7 +24,9 @@ export class EdicionRedesComponent implements OnInit {
   };
 
   constructor(private redesSocialesService: RedesService,
-    private notificacionesService: NotificacionesService) { }
+    private tokenService: TokenService,
+    private notificacionesService: NotificacionesService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.redesSocialesService.obtenerDatosResdesSociales().subscribe(datos => {
@@ -76,4 +80,8 @@ export class EdicionRedesComponent implements OnInit {
     this.mostrarFormulario = false;
   }
 
+  logOut(){
+    this.tokenService.logOut();
+    this.router.navigate(['/']);
+  }
 }

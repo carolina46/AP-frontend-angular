@@ -8,7 +8,7 @@ import { RedesSociales } from '../modelo/redesSociales';
 })
 export class RedesService {
 
-  private url: string = 'http://localhost:8080/redesSociales/';
+  private url: string = 'https://ap--carolina-perez-backend.herokuapp.com/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -17,14 +17,14 @@ export class RedesService {
 
   /** GET: Obtengo la informacion de las redes sociales"*/
   obtenerDatosResdesSociales(): Observable<RedesSociales> {
-    return this.http.get<RedesSociales>(this.url + 'obtener').pipe(
+    return this.http.get<RedesSociales>(this.url + 'portfolio/redesSociales').pipe(
       catchError(this.handleError<RedesSociales>('obtenerDatosRedesSociales'))
     );
   }
 
   /** POST: Guardo datos de RedesSociales*/
   guaradarRedesSociales(redesSociales: RedesSociales): Observable<RedesSociales> {
-    return this.http.post<RedesSociales>(this.url + 'guardar', redesSociales, this.httpOptions).pipe(
+    return this.http.post<RedesSociales>(this.url + 'editarPortfolio/redesSociales/guardar', redesSociales, this.httpOptions).pipe(
       catchError(this.handleError<RedesSociales>('guaradarRedesSociales'))
     );
   }

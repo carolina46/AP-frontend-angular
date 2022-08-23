@@ -10,7 +10,7 @@ export class ExperienciaServiceService {
 
 
 
-  private url: string = 'http://localhost:8080/experiencia/';
+  private url: string = 'https://ap--carolina-perez-backend.herokuapp.com/';
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -21,21 +21,21 @@ export class ExperienciaServiceService {
 
   /** GET: Listado de experiencia*/
   listarExperiencias(): Observable<Experiencia[]> {
-    return this.http.get<Experiencia[]>(this.url + 'listar').pipe(
+    return this.http.get<Experiencia[]>(this.url + 'portfolio/experiencia').pipe(
       catchError(this.handleError<Experiencia[]>('listarExperiencias', []))
     );
   }
 
   /** POST: Guardo una experiencia"*/
   guaradarExperiencia(experiencia: Experiencia): Observable<Experiencia> {
-    return this.http.post<Experiencia>(this.url + 'agregar', experiencia, this.httpOptions).pipe(
+    return this.http.post<Experiencia>(this.url + 'editarPortfolio/experiencia/agregar', experiencia, this.httpOptions).pipe(
       catchError(this.handleError<Experiencia>('guaradarExperiencia'))
     );
   }
 
 
   eliminaExperiencia(experiencia: Experiencia) {
-    const url = `${this.url + "eliminar"}/${experiencia.id}`;
+    const url = `${this.url + "editarPortfolio/experiencia/eliminar"}/${experiencia.id}`;
     return this.http.delete<Boolean>(url, this.httpOptions).pipe(
       catchError(this.handleError<Boolean>('guaradarExperiencia', false))
     );

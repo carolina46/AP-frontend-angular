@@ -646,8 +646,8 @@ textarea{
     
 }
 .imagenMuestraGaleria{
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 20px;
   margin-left: 2rem;
   margin-right: 2rem;
@@ -666,7 +666,7 @@ textarea{
 
   
 .contenedorImagenProyecto1{
-  height: 9rem;
+  height: 12rem;
   width: 100%;
   margin-bottom: 2rem;
 }
