@@ -11,6 +11,7 @@ import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
 
 export class AcercaDeComponent implements OnInit {
 
+  contenidoDisponible : boolean = false;
 
   //Modelo acercaDe
   acercaDe: AcercaDe = {
@@ -34,6 +35,7 @@ export class AcercaDeComponent implements OnInit {
         if (datos.titulo.length == 0) { datos.titulo = "Título obtenido" };
         if (datos.informacionPersonal.length == 0) { datos.informacionPersonal = "Descripción resumida de su información personal" };
         this.acercaDe = datos;
+        this.contenidoDisponible = true;
       }
       else {
         this.acercaDe = {

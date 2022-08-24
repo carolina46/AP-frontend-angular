@@ -1,16 +1,21 @@
 <div id="contenedorAcercaDe">
-    <div id="contenedorBanner">
-        <img id="banner" [src]="acercaDe.banner" alt="Banner">
-        <!--<a href='https://www.freepik.es/vectores/flores-colores'>Vector de flores colores creado por pikisuperstar - www.freepik.es</a>-->
+    <div *ngIf="!contenidoDisponible" class="contenedorCargando">
+        <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
     </div>
-    <div id="ContenedorInformacionDePerfil">
-        <div id="contenedorFotoDePerfil">
-            <img id="fotoDePerfil" [src]="acercaDe.fotoPerfil" alt="Foto De Perfil">
+    <div *ngIf="contenidoDisponible">
+        <div id="contenedorBanner">
+            <img id="banner" [src]="acercaDe.banner" alt="Banner">
+            <!--<a href='https://www.freepik.es/vectores/flores-colores'>Vector de flores colores creado por pikisuperstar - www.freepik.es</a>-->
         </div>
-        <div id="contenedosDatosPersonales">
-            <h1 id="nombre">{{acercaDe.nombreCompleto}}</h1>
-            <h2>{{acercaDe.titulo}}</h2>
-            <p class="descripcionAcercaDe">{{acercaDe.informacionPersonal}}</p>
+        <div id="ContenedorInformacionDePerfil">
+            <div id="contenedorFotoDePerfil">
+                <img id="fotoDePerfil" [src]="acercaDe.fotoPerfil" alt="Foto De Perfil">
+            </div>
+            <div id="contenedosDatosPersonales" *ngIf="contenidoDisponible">
+                <h1 id="nombre">{{acercaDe.nombreCompleto}}</h1>
+                <h2>{{acercaDe.titulo}}</h2>
+                <p class="descripcionAcercaDe">{{acercaDe.informacionPersonal}}</p>
+            </div>
         </div>
     </div>
 </div>

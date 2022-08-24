@@ -2,7 +2,10 @@
     <div class="contenedorTitulo">
         <h1 class="titulo">Proyectos</h1>
     </div>
-    <div class="contenedorArticles">
+    <div *ngIf="!contenidoDisponible" class="contenedorCargandoSeccion">
+        <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
+    </div>
+    <div class="contenedorArticles" *ngIf="contenidoDisponible">
         <article *ngFor="let proyecto of proyectos">
             <h2 class="tituloArticle">{{proyecto.nombre}}</h2>
 

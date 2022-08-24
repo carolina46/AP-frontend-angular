@@ -383,7 +383,25 @@ progress::-webkit-progress-value {
     margin-left: 1em;
     margin-right: 1em;
 }
-
+.contenedorCargando{
+    width:100%;
+    background: url("./assets/seccion.jpg");
+    text-align: center;
+    padding: 1rem;
+    border-radius: 20px;
+}
+.contenedorCargandoSeccion{
+    width:100%;
+    background: url("./assets/seccion.jpg");
+    text-align: center;
+    padding: 1rem;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.cargando{
+    height: 15rem;
+    width: 80%;
+}
 /*------------------FORMULARIOS-------------------------*/
 .contenedorFormulario {
     background: url("./assets/seccion.jpg");

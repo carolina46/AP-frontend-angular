@@ -9,7 +9,7 @@ import { HabilidadService } from 'src/app/servicios/habilidad.service';
   styleUrls: ['./habilidades.component.css']
 })
 export class HabilidadesComponent implements OnInit {
-
+  contenidoDisponible : boolean = false;
   habilidades: Habilidad[] = [];
   nivelConocimientos : Map<number,string> = new Map<number,string>();
   
@@ -32,6 +32,7 @@ export class HabilidadesComponent implements OnInit {
         return 0;
       });
       this.habilidades = datos;
+      this.contenidoDisponible = true;
     });
 
     this.nivelConocimientos.set( 20, "Básico");

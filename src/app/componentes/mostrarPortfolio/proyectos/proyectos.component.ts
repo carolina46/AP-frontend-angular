@@ -9,7 +9,7 @@ import { ProyectoService } from 'src/app/servicios/proyecto.service';
   styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent implements OnInit {
-  
+  contenidoDisponible : boolean = false;
   proyectos: Proyecto[] = [];
 
   imagenActual : number[] = []
@@ -33,6 +33,7 @@ export class ProyectosComponent implements OnInit {
       });
       for(var i=0;i<datos.length; i++){this.imagenActual[i]=0;}
       this.proyectos = datos;
+      this.contenidoDisponible = true;
     });
 
     

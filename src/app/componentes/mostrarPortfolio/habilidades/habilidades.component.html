@@ -2,7 +2,10 @@
     <div class="contenedorTitulo">
         <h1 class="titulo">Habilidades</h1>
     </div>
-    <div class="contenedorArticles" id="habilidades">
+    <div *ngIf="!contenidoDisponible" class="contenedorCargandoSeccion">
+        <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
+    </div>
+    <div class="contenedorArticles" id="habilidades" *ngIf="contenidoDisponible">
         <article *ngFor="let habilidad of habilidades">
             <div class="contenedorHabilidad">
                 <div class="contenedorImagen">

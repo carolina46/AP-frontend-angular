@@ -2,7 +2,10 @@
     <div class="contenedorTitulo">
         <h1 class="titulo">Educación</h1>
     </div>
-    <div class="contenedorArticles">
+    <div *ngIf="!contenidoDisponible" class="contenedorCargandoSeccion">
+        <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
+    </div>
+    <div class="contenedorArticles" *ngIf="contenidoDisponible">
         <article *ngFor="let edu of educacion">
             <div class="contenedorLogoInstitucional" ><img *ngIf="edu.logoInstitucional.length>0" class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional"></div>
             <h1 class="institucionArticle">{{edu.nombreInstitucion}}</h1>

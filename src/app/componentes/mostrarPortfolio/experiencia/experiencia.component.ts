@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 })
 export class ExperienciaComponent implements OnInit {
 
-
+  contenidoDisponible : boolean = false;
   experiencias : Experiencia[] = [];
 
   constructor(private experienciaService: ExperienciaServiceService) {}
@@ -29,6 +29,7 @@ export class ExperienciaComponent implements OnInit {
         return 0;
       });
       this.experiencias = datos;
+      this.contenidoDisponible = true;
     });
   }
   

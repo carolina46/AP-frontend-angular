@@ -9,8 +9,7 @@ import { EducacionService } from 'src/app/servicios/educacion.service';
 })
 export class EducacionComponent implements OnInit {
 
-  esEdicion: boolean = false;
-
+  contenidoDisponible : boolean = false;
   educacion: Educacion[] = [];
 
   constructor(private educacioService : EducacionService) {
@@ -30,6 +29,7 @@ export class EducacionComponent implements OnInit {
       return 0;
     });
     this.educacion = datos;
+    this.contenidoDisponible = true;
   });
 }
 
