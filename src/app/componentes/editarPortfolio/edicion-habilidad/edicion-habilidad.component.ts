@@ -14,6 +14,8 @@ import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-co
 })
 export class EdicionHabilidadComponent implements OnInit {
 
+  nivelConocimientos : Map<number,string> = new Map<number,string>();
+
   //Control de llegada del contenido desde el backend. 
   //Se mostrara animacion de cargando hasta que llegue.
   contenidoDisponible: boolean = false;
@@ -55,6 +57,11 @@ export class EdicionHabilidadComponent implements OnInit {
       this.habilidades = datos;
       this.contenidoDisponible = true;
     });
+    this.nivelConocimientos.set( 20, "Básico");
+    this.nivelConocimientos.set( 40, "Principiante");
+    this.nivelConocimientos.set( 60, "Intermedio");
+    this.nivelConocimientos.set( 80, "Avanzado");
+    this.nivelConocimientos.set( 100, "Experto");
   }
 
 

@@ -295,19 +295,28 @@ article {
     text-align: center;
     height: 10rem;
     width: 100%;
-    border-bottom: solid 1px white;
-    padding: 2rem;
-    border-top: solid 1px white;
-
+    padding: 1rem;  
 }
 
 .contenedorDetalle h1{
-    font-size: 2rem;
+    height: 50%;
+    font-size: 1.8rem;
     text-transform: uppercase;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: overline;
+    color:rgb(47, 148, 154);
+    text-shadow: 1.5px 1px rgba(132, 120, 120, 0.8);
 }
 
 .contenedorDetalle h2{
+    
     font-size: 1.5rem;
+    height: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: underline;
+    text-decoration-color: rgb(129, 129, 121);
 }
 
 .habilidad {
@@ -319,7 +328,7 @@ article {
 
 progress {
     border-radius: 7px; 
-    width: 9rem;
+    width: 90%;
     height: 1rem;
     box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
 }
