@@ -26,7 +26,7 @@ export class AuthGuard implements CanActivate {
     });
     if (!this.tokenService.getToken() || expectedRol.indexOf(this.realRol) === -1) {
       
-      this.router.navigate(['/']);
+      this.router.navigate(['/iniciarSesion']);
       this.notificacionesService.showWarning("Debe Iniciar Seción","")
       return false;
     }
