@@ -648,7 +648,20 @@ textarea{
 
 
   /*--------EDICION PROYECTO------------------*/
-  
+  .botonLink {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    height: 3rem;
+    border: none;
+    margin: 1rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    border: var(--border);
+}
 
 .galeriaImagenesProyectos {
     width: 100%;
@@ -676,13 +689,11 @@ textarea{
   width: 10rem;
   height: 10rem;
   border-radius: 20px;
-  margin-left: 2rem;
-  margin-right: 2rem;
-  border: solid 3px rgba(128, 128, 128, 0.3);
-  
-  
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border: solid 3px rgba(128, 128, 128, 0.3); 
 }
-  .btSyA{
+.btSyA{
     width: 1rem;
     height: 3rem;
     background-color: rgba(128, 128, 128, 0.3);
@@ -696,6 +707,7 @@ textarea{
   height: 12rem;
   width: 100%;
   margin-bottom: 2rem;
+  background-color: red;
 }
 
 

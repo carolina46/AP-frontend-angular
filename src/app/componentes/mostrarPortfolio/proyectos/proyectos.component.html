@@ -12,20 +12,9 @@
             <h3 class="fechaArticle">Desde  {{proyecto.desde | date: 'dd/MM/yyyy'}}</h3>
             <h3 *ngIf="proyecto.hasta!=null" class="fechaArticle">Hasta  {{proyecto.hasta | date: 'dd/MM/yyyy'}}</h3>
             <h3 *ngIf="proyecto.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
-            
-        
-            <div class="contenedorImagenProyecto1">
-
-                <div *ngIf="proyecto.imagenes.length>0" class="galeriaImagenes">
-                    <button class="btSyA" *ngIf="imagenActual[proyecto.posicion]>0" (click)="imagenAnterior(proyecto)"></button>
-                    <img class="imagenMuestraGaleria" [src]="proyecto.imagenes[imagenActual[proyecto.posicion]]" alt="">
-                    <button class="btSyA" *ngIf="imagenActual[proyecto.posicion]<proyecto.imagenes.length-1"
-                        (click)="imagenSiguiente(proyecto)"></button>
-                </div>
-            </div>
-        
-            <p class="descripcion">{{proyecto.descripcion}}</p>
-            <a class="botonFormulario"  [href]="proyecto.link" target="_blank">Mas informacion</a>
+            <p class="descripcion">{{proyecto.descripcion}}</p><br>
+            <a class="botonLink" *ngIf="proyecto.imagenes.length>0" (click)="mostrarGaleria(proyecto)">Galería </a>
+            <a class="botonLink" [href]="proyecto.link" target="_blank">Link</a>
         </article>
     </div>
   </section>

@@ -26,6 +26,7 @@ import { EdicionHabilidadComponent } from './componentes/editarPortfolio/edicion
 import { EdicionProyectoComponent } from './componentes/editarPortfolio/edicion-proyecto/edicion-proyecto.component';
 import { EdicionRedesComponent } from './componentes/editarPortfolio/edicion-redes/edicion-redes.component' ;
 import { interceptorProvider } from './interceptors/prod-interceptor.service';
+import { GeleriaComponent } from './componentes/geleria/geleria.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { interceptorProvider } from './interceptors/prod-interceptor.service';
     EdicionHabilidadComponent,
     EdicionProyectoComponent,
     EdicionRedesComponent,
+    GeleriaComponent,
   
   ],
   imports: [

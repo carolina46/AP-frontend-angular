@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/modelo/proyecto';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
+import { GeleriaComponent } from '../../geleria/geleria.component';
 
 @Component({
   selector: 'app-proyectos',
@@ -21,7 +23,9 @@ export class ProyectosComponent implements OnInit {
 
   imagenActual: number[] = []
 
-  constructor(private proyectoService: ProyectoService) {
+  constructor(private proyectoService: ProyectoService,
+    public dialogo: MatDialog
+    ) {
   }
 
 
@@ -46,15 +50,17 @@ export class ProyectosComponent implements OnInit {
   }
 
 
-  //Gestion de la visualizacion de las imagenes de los proyectos
-  imagenSiguiente(p: Proyecto) {
-    this.imagenActual[p.posicion] += 1;
-  }
-
-  imagenAnterior(p: Proyecto) {
-    this.imagenActual[p.posicion] -= 1;
-
-  }
-
+  //Ventana emergente para mostrar galeria de 
+    //imagenes del proyecto
+    mostrarGaleria(proyecto: Proyecto): void {
+      this.dialogo
+        .open(GeleriaComponent, {
+          width: '100%',
+          data: proyecto,
+          panelClass: 'custom-modalbox'
+        })
+        .afterClosed()
+        .subscribe((confirmado: Boolean) => {});
+    }
 
 }

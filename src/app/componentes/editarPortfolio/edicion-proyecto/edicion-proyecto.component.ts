@@ -6,6 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Proyecto } from 'src/app/modelo/proyecto';
 import { NotificacionesService } from 'src/app/servicios/notificaciones.service';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
+import { GeleriaComponent } from '../../geleria/geleria.component';
 import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-confirmacion.component';
 
 @Component({
@@ -67,15 +68,18 @@ export class EdicionProyectoComponent implements OnInit {
     }
 
 
-    //Gestion de la visualizacion de las imagenes de los proyectos
-    imagenSiguiente(p : Proyecto){
-      this.imagenActual[p.posicion] +=  1;
-    }
-  
-    imagenAnterior(p : Proyecto){
-      this.imagenActual[p.posicion]-=1;
-  
-    }
+    //Ventana emergente para mostrar galeria de 
+    //imagenes del proyecto
+    mostrarGaleria(proyecto: Proyecto): void {
+    this.dialogo
+      .open(GeleriaComponent, {
+        width: '100%',
+        data: proyecto,
+        panelClass: 'custom-modalbox'
+      })
+      .afterClosed()
+      .subscribe((confirmado: Boolean) => {});
+  }
 
    
 

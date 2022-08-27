@@ -1,0 +1,20 @@
+<div id="contenedorGaleria">
+
+    <div id="contenedorCierreGaleria">
+        <button id="botonCierreGaleria" (click)="cerrarDialogo()"> X </button>
+    </div>
+
+    <div id="encabezadoGaleria">
+        <h1>Galería de imagenes</h1>
+        <h2>{{proyecto.nombre}}</h2>
+    </div>
+
+    <div id="galeriaImagenesProyectos">
+        <div *ngFor="let img of proyecto.imagenes">
+            <img class="imagenGaleria" [src]="img">
+        </div>
+
+
+    </div>
+
+</div>
