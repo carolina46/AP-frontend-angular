@@ -218,7 +218,8 @@ export class EdicionExterienciaComponent implements OnInit {
   mostrarVentanaConfirmacion(experiencia: Experiencia): void {
     this.dialogo
       .open(VentanaConfirmacionComponent, {
-        data: `¿Desea eliminar el elemento?`
+        data: `¿Desea eliminar el elemento?`,
+        panelClass: 'ventanaDeEliminarElemento'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {

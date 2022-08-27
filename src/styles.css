@@ -4,6 +4,7 @@
     --color-secundario: #f5f5f5;
     --box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
     --box-shadow-fuerte: 10px 10px 10px rgb(0, 0, 0);
+    --box-shadow-claro: 5px 5px 5px grey;
     --border: solid 2px grey;
 }
 

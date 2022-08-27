@@ -162,7 +162,8 @@ export class EdicionProyectoComponent implements OnInit {
   mostrarVentanaConfirmacionImagen(posicion : number): void {
     this.dialogo
       .open(VentanaConfirmacionComponent, {
-        data: `¿Desea eliminar el elemento?`
+        data: `¿Desea eliminar el elemento?`,
+        panelClass: 'ventanaDeEliminarElemento'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
@@ -264,7 +265,8 @@ export class EdicionProyectoComponent implements OnInit {
   mostrarVentanaConfirmacion(proyecto: Proyecto): void {
     this.dialogo
       .open(VentanaConfirmacionComponent, {
-        data: `¿Desea eliminar el elemento?`
+        data: `¿Desea eliminar el elemento?`,
+        panelClass: 'ventanaDeEliminarElemento'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {

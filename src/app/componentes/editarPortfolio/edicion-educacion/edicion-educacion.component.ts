@@ -230,7 +230,8 @@ export class EdicionEducacionComponent implements OnInit {
   mostrarVentanaConfirmacion(educacion: Educacion): void {
     this.dialogo
       .open(VentanaConfirmacionComponent, {
-        data: `¿Desea eliminar el elemento?`
+        data: `¿Desea eliminar el elemento?`,
+        panelClass: 'ventanaDeEliminarElemento'
       })
       .afterClosed()
       .subscribe((confirmado: Boolean) => {

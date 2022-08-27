@@ -1,3 +1,12 @@
+::ng-deep .ventanaDeEliminarElemento mat-dialog-container {
+    background-color: var(--color-primario);
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow-claro);
+
+}
+
+
 #ventanaConfirmacion{
    text-align: center;
    width: 30rem;
