@@ -14,6 +14,9 @@ import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-co
 })
 export class EdicionHabilidadComponent implements OnInit {
 
+  //Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
+  contenidoDisponible: boolean = false;
   //Para controlar si se muestra o no el formulario de habilidad
   mostrarFormularioHabilidad: boolean = false;
   //Para cambiar el titulo del formulario, agregar o modificar habilidad
@@ -50,6 +53,7 @@ export class EdicionHabilidadComponent implements OnInit {
         return 0;
       });
       this.habilidades = datos;
+      this.contenidoDisponible = true;
     });
   }
 

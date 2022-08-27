@@ -15,6 +15,9 @@ import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-co
 })
 export class EdicionProyectoComponent implements OnInit {
 
+  //Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
+  contenidoDisponible: boolean = false;
   //Para controlar lo que se muestra en el panel de proyectos
   mostrarFormularioProyecto: boolean = false;
   //Para cambiar el titulo del formulario, agregar o modificar Proyecto
@@ -59,6 +62,7 @@ export class EdicionProyectoComponent implements OnInit {
         });
         for(var i=0;i<datos.length; i++){this.imagenActual[i]=0;}
         this.proyectos = datos;
+        this.contenidoDisponible = true;
       });
     }
 

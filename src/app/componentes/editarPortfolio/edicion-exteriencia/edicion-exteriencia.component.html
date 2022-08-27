@@ -6,82 +6,87 @@
             class="iconoPanelEdicion" src="./assets/agregar.png" alt="AGREGAR">
     </div>
 
+    <div *ngIf="!contenidoDisponible" class="contenedorCargandoSeccion">
+        <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
+    </div>
+    <div *ngIf="contenidoDisponible">
+        <!-- Formulario experiencia laboral-->
+        <div id="contenedorFormulario" *ngIf="formularioExperiencia">
 
-    <!-- Formulario experiencia laboral-->
-    <div id="contenedorFormulario" *ngIf="formularioExperiencia">
+            <div id="formulario">
+                <span>{{accion}}</span>
+                <p style="color: tomato; ">* Campos obligatorios</p>
 
-        <div id="formulario">
-            <span>{{accion}}</span>
-            <p style="color: tomato; ">* Campos obligatorios</p>
-
-            <div>
-                <label>Logo de la empresa</label>
-                <label for="agregarLogoInstitucional" id="contenedorImagen"><img id="cargarImagen"
-                        class="logoInstitucional" [src]="nuevaExperiencia.logoEmpresa" alt="Logo Institucional"></label>
-                <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="agregarLogoInstitucional"
-                    (change)="capturarImagen($event)">
-            </div>
-
-
-            <label for="nombreLugarDeTrabajo" style="color: tomato; ">* Lugar de trabajo</label>
-            <input id="nombreLugarDeTrabajo" [(ngModel)]="nuevaExperiencia.nombreLugarDeTrabajo" type="text">
-
-            <label for="puesto" style="color: tomato; "> * Puesto</label>
-            <input id="puesto" required [(ngModel)]="nuevaExperiencia.nombrePuesto" type="text">
-
-            <label for="desde" style="color: tomato; "> * Desde</label>
-            <input id="desde" required [(ngModel)]="nuevaExperiencia.desde" type="date" name="bday">
-
-            <label class="container"> Terminó la experiencia laboral
-                <input type="checkbox" [(ngModel)]="fechaHasta">
-                <span class="checkmark"></span>
-            </label>
-            <div *ngIf="fechaHasta">
-                <label for="hasta" style="color: tomato; "> * Hasta</label>
-                <input id="hasta" [(ngModel)]="nuevaExperiencia.hasta" type="date" name="bday">
-            </div>
-            <label for="descripcion" style="color: tomato; ">* Tareas realizadas</label>
-            <textarea id="descripcion" required [(ngModel)]="nuevaExperiencia.descripcionActividades"></textarea>
+                <div>
+                    <label>Logo de la empresa</label>
+                    <label for="agregarLogoInstitucional" id="contenedorImagen"><img id="cargarImagen"
+                            class="logoInstitucional" [src]="nuevaExperiencia.logoEmpresa"
+                            alt="Logo Institucional"></label>
+                    <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="agregarLogoInstitucional"
+                        (change)="capturarImagen($event)">
+                </div>
 
 
-            <div class="contenedorBotones">
-                <button *ngIf="nueva" class="botonFormulario" type="button"
-                    (click)="guardarNuevaExperiencia()">Guardar</button>
-                <button *ngIf="!nueva" class="botonFormulario" type="button"
-                    (click)="guardarCambiosExperiencia()">Guardar</button>
+                <label for="nombreLugarDeTrabajo" style="color: tomato; ">* Lugar de trabajo</label>
+                <input id="nombreLugarDeTrabajo" [(ngModel)]="nuevaExperiencia.nombreLugarDeTrabajo" type="text">
 
-                <button class="botonFormulario" type="button" (click)="cancelarExperiencia()">Cancelar</button>
+                <label for="puesto" style="color: tomato; "> * Puesto</label>
+                <input id="puesto" required [(ngModel)]="nuevaExperiencia.nombrePuesto" type="text">
+
+                <label for="desde" style="color: tomato; "> * Desde</label>
+                <input id="desde" required [(ngModel)]="nuevaExperiencia.desde" type="date" name="bday">
+
+                <label class="container"> Terminó la experiencia laboral
+                    <input type="checkbox" [(ngModel)]="fechaHasta">
+                    <span class="checkmark"></span>
+                </label>
+                <div *ngIf="fechaHasta">
+                    <label for="hasta" style="color: tomato; "> * Hasta</label>
+                    <input id="hasta" [(ngModel)]="nuevaExperiencia.hasta" type="date" name="bday">
+                </div>
+                <label for="descripcion" style="color: tomato; ">* Tareas realizadas</label>
+                <textarea id="descripcion" required [(ngModel)]="nuevaExperiencia.descripcionActividades"></textarea>
 
 
+                <div class="contenedorBotones">
+                    <button *ngIf="nueva" class="botonFormulario" type="button"
+                        (click)="guardarNuevaExperiencia()">Guardar</button>
+                    <button *ngIf="!nueva" class="botonFormulario" type="button"
+                        (click)="guardarCambiosExperiencia()">Guardar</button>
+
+                    <button class="botonFormulario" type="button" (click)="cancelarExperiencia()">Cancelar</button>
+
+
+                </div>
             </div>
         </div>
+
+        <!-- Listado de experiencia laboral-->
+        <div cdkDropList [cdkDropListData]="experiencias" (cdkDropListDropped)="drop($event)" class="contenedorArticles"
+            *ngIf="!formularioExperiencia">
+
+            <article cdkDrag *ngFor="let experiencia of experiencias">
+                <div class="panelEdicionArticle">
+                    <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
+                        (click)="mostrarFormularioEditarExperiencia(experiencia)">
+                    <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
+                        (click)="mostrarVentanaConfirmacion(experiencia)">
+                    <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER"
+                        title="Seleccione y arrastre el elemento para cambiarlo de posición">
+                </div>
+                <div class="contenedorLogoInstitucional"><img *ngIf="experiencia.logoEmpresa.length>0"
+                        class="logoInstitucional" [src]="experiencia.logoEmpresa" alt="Logo Institucional"></div>
+                <h1 class="institucionArticle">{{experiencia.nombreLugarDeTrabajo}}</h1>
+                <h2 class="tituloArticle">{{experiencia.nombrePuesto}}</h2>
+                <h3 class="fechaArticle">Desde {{experiencia.desde | date: 'dd/MM/yyyy'}}</h3>
+                <h3 *ngIf="experiencia.hasta!=null" class="fechaArticle">Hasta {{experiencia.hasta | date:
+                    'dd/MM/yyyy'}}
+                </h3>
+                <h3 *ngIf="experiencia.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
+                <p class="descripcion">{{experiencia.descripcionActividades}}</p>
+            </article>
+        </div>
+
     </div>
-
-    <!-- Listado de experiencia laboral-->
-    <div cdkDropList [cdkDropListData]="experiencias" (cdkDropListDropped)="drop($event)" class="contenedorArticles"
-        *ngIf="!formularioExperiencia">
-
-        <article cdkDrag *ngFor="let experiencia of experiencias">
-            <div class="panelEdicionArticle">
-                <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
-                    (click)="mostrarFormularioEditarExperiencia(experiencia)">
-                <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
-                    (click)="mostrarVentanaConfirmacion(experiencia)">
-                <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER"
-                    title="Seleccione y arrastre el elemento para cambiarlo de posición">
-            </div>
-            <div class="contenedorLogoInstitucional"><img *ngIf="experiencia.logoEmpresa.length>0"
-                    class="logoInstitucional" [src]="experiencia.logoEmpresa" alt="Logo Institucional"></div>
-            <h1 class="institucionArticle">{{experiencia.nombreLugarDeTrabajo}}</h1>
-            <h2 class="tituloArticle">{{experiencia.nombrePuesto}}</h2>
-            <h3 class="fechaArticle">Desde {{experiencia.desde | date: 'dd/MM/yyyy'}}</h3>
-            <h3 *ngIf="experiencia.hasta!=null" class="fechaArticle">Hasta {{experiencia.hasta | date: 'dd/MM/yyyy'}}
-            </h3>
-            <h3 *ngIf="experiencia.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
-            <p class="descripcion">{{experiencia.descripcionActividades}}</p>
-        </article>
-    </div>
-
-
 
 </section>

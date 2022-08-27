@@ -1,4 +1,6 @@
 <section id="educacion">
+
+
     <!------------TITULO------------>
     <div class="contenedorTitulo">
         <h1 class="titulo">Educación</h1>
@@ -6,72 +8,79 @@
             class="iconoPanelEdicion" src="./assets/agregar.png" alt="AGREGAR">
     </div>
 
-    <!---------FORMULARIO EDUCACIÓN----------->
-    <div id="contenedorFormulario" *ngIf="formularioEducacion">
-        <div id="formulario">
-            <span>{{accion}}</span>
-            <p style="color: tomato; ">* Campos obligatorios</p>
+    <div *ngIf="!contenidoDisponible" class="contenedorCargandoSeccion">
+        <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
+    </div>
+    <div *ngIf="contenidoDisponible">
 
-            <div>
-                <label>Logo de la institución académica</label>
-                <label for="agregarLogoInstitucional" id="contenedorImagen"><img id="cargarImagen"
-                        class="logoInstitucional" [src]="educacionFormulario.logoInstitucional"
-                        alt="Logo Institucional"></label>
-                <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="agregarLogoInstitucional"
-                    (change)="capturarImagen($event)">
-            </div>
 
-            <label for="nombreInstitucion" style="color: tomato; ">* Nombre de la institución académica</label>
-            <input id="nombreInstitucion" [(ngModel)]="educacionFormulario.nombreInstitucion" type="text">
+        <!---------FORMULARIO EDUCACIÓN----------->
+        <div id="contenedorFormulario" *ngIf="formularioEducacion">
+            <div id="formulario">
+                <span>{{accion}}</span>
+                <p style="color: tomato; ">* Campos obligatorios</p>
 
-            <label for="tituloObtenido" style="color: tomato; "> * Título obtenido</label>
-            <input id="tituloObtenido" required [(ngModel)]="educacionFormulario.tituloObtenido" type="text">
+                <div>
+                    <label>Logo de la institución académica</label>
+                    <label for="agregarLogoInstitucional" id="contenedorImagen"><img id="cargarImagen"
+                            class="logoInstitucional" [src]="educacionFormulario.logoInstitucional"
+                            alt="Logo Institucional"></label>
+                    <input type="file" accept="image/png,image/jpeg" class="inputImagen" id="agregarLogoInstitucional"
+                        (change)="capturarImagen($event)">
+                </div>
 
-            <label for="desde" style="color: tomato; "> * Desde</label>
-            <input id="desde" required [(ngModel)]="educacionFormulario.desde" type="date" name="bday">
+                <label for="nombreInstitucion" style="color: tomato; ">* Nombre de la institución académica</label>
+                <input id="nombreInstitucion" [(ngModel)]="educacionFormulario.nombreInstitucion" type="text">
 
-            <label class="container"> Terminó la educación
-                <input type="checkbox" [(ngModel)]="fechaHasta">
-                <span class="checkmark"></span>
-            </label>
-            <div *ngIf="fechaHasta">
-                <label for="hasta" style="color: tomato; "> * Hasta</label>
-                <input id="hasta" [(ngModel)]="educacionFormulario.hasta" type="date" name="bday">
-            </div>
-            
-            <div class="contenedorBotones">
-                <button *ngIf="nueva" class="botonFormulario" type="button"
-                    (click)="guardarNuevaEducacion()">Guardar</button>
-                <button *ngIf="!nueva" class="botonFormulario" type="button"
-                    (click)="guardarCambiosEducacion()">Guardar</button>
-                <button class="botonFormulario" type="button" (click)="cancelarEducacion()">Cancelar</button>
+                <label for="tituloObtenido" style="color: tomato; "> * Título obtenido</label>
+                <input id="tituloObtenido" required [(ngModel)]="educacionFormulario.tituloObtenido" type="text">
+
+                <label for="desde" style="color: tomato; "> * Desde</label>
+                <input id="desde" required [(ngModel)]="educacionFormulario.desde" type="date" name="bday">
+
+                <label class="container"> Terminó la educación
+                    <input type="checkbox" [(ngModel)]="fechaHasta">
+                    <span class="checkmark"></span>
+                </label>
+                <div *ngIf="fechaHasta">
+                    <label for="hasta" style="color: tomato; "> * Hasta</label>
+                    <input id="hasta" [(ngModel)]="educacionFormulario.hasta" type="date" name="bday">
+                </div>
+
+                <div class="contenedorBotones">
+                    <button *ngIf="nueva" class="botonFormulario" type="button"
+                        (click)="guardarNuevaEducacion()">Guardar</button>
+                    <button *ngIf="!nueva" class="botonFormulario" type="button"
+                        (click)="guardarCambiosEducacion()">Guardar</button>
+                    <button class="botonFormulario" type="button" (click)="cancelarEducacion()">Cancelar</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!---------LISTADO DE EDUCACIÓN----------->
-    <!-- Listado de experiencia laboral-->
-    <div cdkDropList [cdkDropListData]="educacion" (cdkDropListDropped)="drop($event)" class="contenedorArticles"
-        *ngIf="!formularioEducacion">
-        <article cdkDrag *ngFor="let edu of educacion">
-            <div class="panelEdicionArticle">
-                <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
-                    (click)="mostrarFormularioEditarEducacion(edu)">
-                <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
-                    (click)="mostrarVentanaConfirmacion(edu)">
-                <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER"
-                title="Seleccione y arrastre el elemento para cambiarlo de posición">
-            </div>
+        <!---------LISTADO DE EDUCACIÓN----------->
+        <!-- Listado de experiencia laboral-->
+        <div cdkDropList [cdkDropListData]="educacion" (cdkDropListDropped)="drop($event)" class="contenedorArticles"
+            *ngIf="!formularioEducacion">
+            <article cdkDrag *ngFor="let edu of educacion">
+                <div class="panelEdicionArticle">
+                    <img class="iconoPanelEdicion" src="./assets/editar.png" alt="EDITAR"
+                        (click)="mostrarFormularioEditarEducacion(edu)">
+                    <img class="iconoPanelEdicion" src="./assets/eliminar.png" alt="ELIMINAR"
+                        (click)="mostrarVentanaConfirmacion(edu)">
+                    <img class="iconoPanelEdicion" src="./assets/mover.png" alt="MOVER"
+                        title="Seleccione y arrastre el elemento para cambiarlo de posición">
+                </div>
 
-            <div class="contenedorLogoInstitucional"><img *ngIf="edu.logoInstitucional.length>0"  class="logoInstitucional" [src]="edu.logoInstitucional"
-                    alt="Logo Institucional"></div>
-            <h1 class="institucionArticle">{{edu.nombreInstitucion}}</h1>
-            <h2 class="tituloArticle">{{edu.tituloObtenido}}</h2>
-            <h3 class="fechaArticle">Desde {{edu.desde | date: 'dd/MM/yyyy'}}</h3>
-            <h3 *ngIf="edu.hasta!=null" class="fechaArticle">Hasta {{edu.hasta | date: 'dd/MM/yyyy'}}</h3>
-            <h3 *ngIf="edu.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
-            
-        </article>
+                <div class="contenedorLogoInstitucional"><img *ngIf="edu.logoInstitucional.length>0"
+                        class="logoInstitucional" [src]="edu.logoInstitucional" alt="Logo Institucional"></div>
+                <h1 class="institucionArticle">{{edu.nombreInstitucion}}</h1>
+                <h2 class="tituloArticle">{{edu.tituloObtenido}}</h2>
+                <h3 class="fechaArticle">Desde {{edu.desde | date: 'dd/MM/yyyy'}}</h3>
+                <h3 *ngIf="edu.hasta!=null" class="fechaArticle">Hasta {{edu.hasta | date: 'dd/MM/yyyy'}}</h3>
+                <h3 *ngIf="edu.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
+
+            </article>
+        </div>
     </div>
 
 </section>

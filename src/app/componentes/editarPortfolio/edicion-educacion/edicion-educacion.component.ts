@@ -14,7 +14,10 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./edicion-educacion.component.css']
 })
 export class EdicionEducacionComponent implements OnInit {
-
+  
+  //Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
+  contenidoDisponible: boolean = false;
   //Para controlar lo que se muestra en el panel de educacion
   formularioEducacion: boolean = false;
   //Para cambiar el titulo del formulario, agregar o modificar Educacion
@@ -53,6 +56,7 @@ export class EdicionEducacionComponent implements OnInit {
         return 0;
       });
       this.educacion = datos;
+      this.contenidoDisponible = true;
     });
   }
 

@@ -11,16 +11,21 @@ import { AcercaDeService } from 'src/app/servicios/acerca-de.service';
 
 export class AcercaDeComponent implements OnInit {
 
-  contenidoDisponible : boolean = false;
+  //Control si hay contenido para mostrar. 
+  //De no haber el componente no se mostrara.
+  tieneContenido: boolean = true;
+  //Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
+  contenidoDisponible: boolean = false;
 
   //Modelo acercaDe
   acercaDe: AcercaDe = {
     id: 0,
-    banner: "./assets/banner.jpg",
-    fotoPerfil: "./assets/fotoPerfil.jpg",
-    nombreCompleto: "Nombre completo",
-    titulo: "Título obtenido",
-    informacionPersonal: "Descripción resumida de su información personal"
+    banner: "",
+    fotoPerfil: "",
+    nombreCompleto: "",
+    titulo: "",
+    informacionPersonal: ""
   };
 
   constructor(private acercaDeservice: AcercaDeService) { }
@@ -29,24 +34,21 @@ export class AcercaDeComponent implements OnInit {
     //Obtengo los datos de Acerca de
     this.acercaDeservice.obtenerDatosAcercaDe().subscribe(datos => {
       if (datos != null) {
-        if (datos.banner.length == 0) { datos.banner = "./assets/banner.jpg" };
-        if (datos.fotoPerfil.length == 0) { datos.fotoPerfil = "./assets/fotoPerfil.jpg" };
-        if (datos.nombreCompleto.length == 0) { datos.nombreCompleto = "Nombre completo" };
-        if (datos.titulo.length == 0) { datos.titulo = "Título obtenido" };
-        if (datos.informacionPersonal.length == 0) { datos.informacionPersonal = "Descripción resumida de su información personal" };
-        this.acercaDe = datos;
-        this.contenidoDisponible = true;
+        if (datos.banner.length == 0 &&
+          datos.fotoPerfil.length == 0 &&
+          datos.nombreCompleto.length == 0 &&
+          datos.titulo.length == 0 &&
+          datos.informacionPersonal.length == 0) {
+          this.tieneContenido = false;
+        }
+        else {
+          this.acercaDe = datos;
+          this.contenidoDisponible = true;
+        }
+
       }
-      else {
-        this.acercaDe = {
-          id: 0,
-          banner: "./assets/banner.jpg",
-          fotoPerfil: "./assets/fotoPerfil.jpg",
-          nombreCompleto: "Nombre completo",
-          titulo: "Título obtenido",
-          informacionPersonal: "Descripción resumida de su información personal"
-        };
-      }
+      else { this.tieneContenido = false;}
+
     });
   }
 }

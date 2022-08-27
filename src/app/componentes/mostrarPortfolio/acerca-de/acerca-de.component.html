@@ -1,17 +1,20 @@
-<div id="contenedorAcercaDe">
+<div id="contenedorAcercaDe" *ngIf="tieneContenido" >
+    <!-- Se muestra animacion hasta que llegan los datos del backend-->
     <div *ngIf="!contenidoDisponible" class="contenedorCargando">
         <img class="cargando" src="./assets/cargando.gif" alt="CARGANDO...">
     </div>
+    
+    <!-- Se muestra los datos cuando llegan del backend-->
     <div *ngIf="contenidoDisponible">
-        <div id="contenedorBanner">
+        <div id="contenedorBanner" *ngIf="acercaDe.banner.length>0">
             <img id="banner" [src]="acercaDe.banner" alt="Banner">
             <!--<a href='https://www.freepik.es/vectores/flores-colores'>Vector de flores colores creado por pikisuperstar - www.freepik.es</a>-->
         </div>
-        <div id="ContenedorInformacionDePerfil">
-            <div id="contenedorFotoDePerfil">
+        <div id="ContenedorInformacionDePerfil" *ngIf="acercaDe.nombreCompleto.length>0 || acercaDe.titulo.length>0 || acercaDe.informacionPersonal.length>0 || acercaDe.fotoPerfil.length>0" >
+            <div id="contenedorFotoDePerfil" *ngIf="acercaDe.fotoPerfil.length>0">
                 <img id="fotoDePerfil" [src]="acercaDe.fotoPerfil" alt="Foto De Perfil">
             </div>
-            <div id="contenedosDatosPersonales" *ngIf="contenidoDisponible">
+            <div id="contenedosDatosPersonales" *ngIf="acercaDe.nombreCompleto.length>0 || acercaDe.titulo.length>0 || acercaDe.informacionPersonal.length>0">
                 <h1 id="nombre">{{acercaDe.nombreCompleto}}</h1>
                 <h2>{{acercaDe.titulo}}</h2>
                 <p class="descripcionAcercaDe">{{acercaDe.informacionPersonal}}</p>

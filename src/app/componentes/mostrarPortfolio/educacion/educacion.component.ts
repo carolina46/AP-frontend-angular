@@ -9,28 +9,33 @@ import { EducacionService } from 'src/app/servicios/educacion.service';
 })
 export class EducacionComponent implements OnInit {
 
-  contenidoDisponible : boolean = false;
+  //Control si hay contenido para mostrar. 
+  //De no haber el componente no se mostrara.
+  tieneContenido: boolean = true;
+  //Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
+  contenidoDisponible: boolean = false;
+  //Contenedor de la lista de educacion
   educacion: Educacion[] = [];
 
-  constructor(private educacioService : EducacionService) {
+  constructor(private educacioService: EducacionService) {
   }
 
   ngOnInit(): void {
     this.educacioService.listarEducacions().subscribe(datos => {
-    //ordeno por posicion
-    datos.sort(function (a, b) {
-      if (a.posicion > b.posicion) {
-        return 1;
+      if (datos.length == 0) {
+        this.tieneContenido = false;
       }
-      if (a.posicion < b.posicion) {
-        return -1;
+      else {
+        datos.sort(function (a, b) {
+          if (a.posicion > b.posicion) { return 1; }
+          if (a.posicion < b.posicion) { return -1; }
+          return 0;
+        });
+        this.educacion = datos;
+        this.contenidoDisponible = true;
       }
-      // a must be equal to b
-      return 0;
     });
-    this.educacion = datos;
-    this.contenidoDisponible = true;
-  });
-}
+  }
 
 }

@@ -10,26 +10,31 @@ import { DatePipe } from '@angular/common';
 })
 export class ExperienciaComponent implements OnInit {
 
+  //Control si hay contenido para mostrar. 
+  //De no haber el componente no se mostrara.
+  tieneContenido : boolean = true; 
+  //Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
   contenidoDisponible : boolean = false;
+  //Contenedor de la lista de experiencias
   experiencias : Experiencia[] = [];
 
   constructor(private experienciaService: ExperienciaServiceService) {}
 
   ngOnInit(): void {
     this.experienciaService.listarExperiencias().subscribe(datos => {
-      //ordeno por posicion
-      datos.sort(function (a, b) {
-        if (a.posicion > b.posicion) {
-          return 1;
-        }
-        if (a.posicion < b.posicion) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
-      });
-      this.experiencias = datos;
-      this.contenidoDisponible = true;
+      if(datos.length == 0){
+        this.tieneContenido = false;
+      }
+      else{
+        datos.sort(function (a, b) {
+          if (a.posicion > b.posicion) {return 1;}
+          if (a.posicion < b.posicion) {return -1;}
+          return 0;
+        });
+        this.experiencias = datos;
+        this.contenidoDisponible = true;
+      }
     });
   }
   

@@ -12,7 +12,9 @@ import { NotificacionesService } from 'src/app/servicios/notificaciones.service'
 })
 export class EdicionAcercaDeComponent implements OnInit {
 
-
+//Control de llegada del contenido desde el backend. 
+  //Se mostrara animacion de cargando hasta que llegue.
+  contenidoDisponible: boolean = false;
 
   //Para saber si se cargo una nueva imagen.
   //False muestra boton editar - true muestra botones aceptar y cancelar 
@@ -53,6 +55,7 @@ export class EdicionAcercaDeComponent implements OnInit {
         if (datos.banner == "") datos.banner = "./assets/banner.jpg";
         if (datos.fotoPerfil == "") datos.fotoPerfil = "./assets/fotoPerfil.jpg";
         this.acercaDe = datos;
+        this.contenidoDisponible = true;
       }
     });
 
