@@ -37,7 +37,10 @@
                 
                 
                 <div class="contenedorBotones">
-                    <button class="botonFormulario" type="button" (click)="guardar()">Guardar</button>
+                    <button  *ngIf="!presionoGuardar" class="botonFormulario" type="button" (click)="guardar()">Guardar</button>
+                    <div *ngIf="presionoGuardar" class="contenedorProcesando"><img class="procesando"
+                        src="./assets/cargando.gif" alt="COMPROBANDO..."></div>
+                
                     <button class="botonFormulario" type="button" (click)="cancelar()">Cancelar</button>
                 </div>
             </div>

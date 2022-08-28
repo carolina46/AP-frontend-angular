@@ -212,6 +212,10 @@ article {
     margin: 1rem;
 }
 
+article:hover{
+    transform: scale(1.04);
+}
+
 .contenedorLogoInstitucional{
     height: 7rem;
     width: 100%;
@@ -298,6 +302,8 @@ article {
     width: 100%;
     padding: 1rem;  
 }
+
+
 
 .contenedorDetalle h1{
     height: 50%;
@@ -458,6 +464,23 @@ progress::-webkit-progress-value {
 .botonFormulario:hover {
     background-color: rgba(128, 128, 128, 0.6);
     color: var(--color-secundario);
+}
+
+.contenedorProcesando {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    height: 3rem;
+    width: 6rem;
+    border: none;
+    margin: 1rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    padding: 0.5em;
+    border: var(--border);
+    display: inline-block;
+}
+.procesando{
+    width:90%;
 }
 
 .contenedorCampo {

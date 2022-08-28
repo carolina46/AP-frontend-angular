@@ -14,8 +14,8 @@ import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-co
 })
 export class EdicionHabilidadComponent implements OnInit {
 
-  nivelConocimientos : Map<number,string> = new Map<number,string>();
-
+  nivelConocimientos: Map<number, string> = new Map<number, string>();
+  presionoGuardar: boolean = false;
   //Control de llegada del contenido desde el backend. 
   //Se mostrara animacion de cargando hasta que llegue.
   contenidoDisponible: boolean = false;
@@ -28,7 +28,7 @@ export class EdicionHabilidadComponent implements OnInit {
 
   //Para guardar los datos del formulario
   habilidadFormulario: any;
-  
+
   //Listado de educacion
   habilidades: Habilidad[] = [];
 
@@ -57,11 +57,11 @@ export class EdicionHabilidadComponent implements OnInit {
       this.habilidades = datos;
       this.contenidoDisponible = true;
     });
-    this.nivelConocimientos.set( 20, "Básico");
-    this.nivelConocimientos.set( 40, "Principiante");
-    this.nivelConocimientos.set( 60, "Intermedio");
-    this.nivelConocimientos.set( 80, "Avanzado");
-    this.nivelConocimientos.set( 100, "Experto");
+    this.nivelConocimientos.set(20, "Básico");
+    this.nivelConocimientos.set(40, "Principiante");
+    this.nivelConocimientos.set(60, "Intermedio");
+    this.nivelConocimientos.set(80, "Avanzado");
+    this.nivelConocimientos.set(100, "Experto");
   }
 
 
@@ -92,6 +92,7 @@ export class EdicionHabilidadComponent implements OnInit {
 
   //Manda al backend la nueva habilidad
   guardarNuevaHabilidad() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
       if (this.habilidadFormulario.imagen == "./assets/mas.png") {
         this.habilidadFormulario.imagen = "";
@@ -105,10 +106,12 @@ export class EdicionHabilidadComponent implements OnInit {
           this.notificacionesService.showSuccess("Se agrego exitosamente", "Nueva Habilidad");
         }
         this.mostrarFormularioHabilidad = false;
+        this.presionoGuardar = false;
       }
       );
     }
     else {
+      this.presionoGuardar = false;
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Nueva Habilidad");
     }
   }
@@ -118,8 +121,8 @@ export class EdicionHabilidadComponent implements OnInit {
 
   //Comprobacion que los datos obligatorios no sean vacios
   comprobarCamposObligatorios() {
-    return (this.habilidadFormulario.nombre.length && 
-      this.habilidadFormulario.porcentajeDominio!=null &&
+    return (this.habilidadFormulario.nombre.length &&
+      this.habilidadFormulario.porcentajeDominio != null &&
       this.habilidadFormulario.imagen != "./assets/mas.png")
   }
 
@@ -142,7 +145,7 @@ export class EdicionHabilidadComponent implements OnInit {
       id: habilidad.id,
       nombre: habilidad.nombre,
       imagen: habilidad.imagen,
-      porcentajeDominio : habilidad.porcentajeDominio,
+      porcentajeDominio: habilidad.porcentajeDominio,
       posicion: habilidad.posicion,
     }
     if (habilidad.imagen.length == 0) {
@@ -154,19 +157,26 @@ export class EdicionHabilidadComponent implements OnInit {
 
   //Mandamos al backend las modificaciones
   guardarCambiosHabilidad() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
-        if (this.habilidadFormulario.imagen == "./assets/mas.png") {
-          this.habilidadFormulario.imagen = "";
+      if (this.habilidadFormulario.imagen == "./assets/mas.png") {
+        this.habilidadFormulario.imagen = "";
+      }
+      this.habilidadService.guaradarHabilidad(this.habilidadFormulario).subscribe(data => {
+        if (data == undefined) {
+          this.notificacionesService.showError("No se pudo modificar", "Modificar Habilidad");
         }
-        this.habilidadService.guaradarHabilidad(this.habilidadFormulario).subscribe(data => {
+        else {
           this.habilidades.splice(this.habilidadFormulario.posicion, 1, this.habilidadFormulario);
-          this.mostrarFormularioHabilidad = false;
           this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar Habilidad");
         }
-        );
+        this.mostrarFormularioHabilidad = false;
+        this.presionoGuardar = false;
+      });
     }
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Modificar Habilidad");
+      this.presionoGuardar = false;
     }
   }
 
@@ -210,7 +220,8 @@ export class EdicionHabilidadComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarHabilidad(habilidad);
-        }});
+        }
+      });
   }
 
 

@@ -6,7 +6,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Proyecto } from 'src/app/modelo/proyecto';
 import { NotificacionesService } from 'src/app/servicios/notificaciones.service';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
-import { GeleriaComponent } from '../../geleria/geleria.component';
+import { GeleriaComponent } from '../../galeria/geleria.component';
 import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-confirmacion.component';
 
 @Component({
@@ -16,6 +16,7 @@ import { VentanaConfirmacionComponent } from '../ventana-confirmacion/ventana-co
 })
 export class EdicionProyectoComponent implements OnInit {
 
+  presionoGuardar: boolean = false;
   //Control de llegada del contenido desde el backend. 
   //Se mostrara animacion de cargando hasta que llegue.
   contenidoDisponible: boolean = false;
@@ -29,12 +30,12 @@ export class EdicionProyectoComponent implements OnInit {
   //Para guardar los datos del formulario
   proyectoFormulario: any;
   //Para control del imput de la fecha hasta true=seleccionado
-  fechaHasta : boolean = true;
+  fechaHasta: boolean = true;
 
   //Listado de proyectos
   proyectos: Proyecto[] = [];
   //Para ir visualisando la lista de imagenes de cada proyecto
-  imagenActual : number[] = []
+  imagenActual: number[] = []
 
 
   constructor(private sanitizer: DomSanitizer,
@@ -44,33 +45,33 @@ export class EdicionProyectoComponent implements OnInit {
 
 
 
-    ngOnInit(): void {
-      this.obtenerProyectos();
-    }
-  
-    obtenerProyectos() {
-      this.proyectoService.listarProyectos().subscribe(datos => {
-        //ordeno por posicion
-        datos.sort(function (a, b) {
-          if (a.posicion > b.posicion) {
-            return 1;
-          }
-          if (a.posicion < b.posicion) {
-            return -1;
-          }
-          // a must be equal to b
-          return 0;
-        });
-        for(var i=0;i<datos.length; i++){this.imagenActual[i]=0;}
-        this.proyectos = datos;
-        this.contenidoDisponible = true;
+  ngOnInit(): void {
+    this.obtenerProyectos();
+  }
+
+  obtenerProyectos() {
+    this.proyectoService.listarProyectos().subscribe(datos => {
+      //ordeno por posicion
+      datos.sort(function (a, b) {
+        if (a.posicion > b.posicion) {
+          return 1;
+        }
+        if (a.posicion < b.posicion) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
       });
-    }
+      for (var i = 0; i < datos.length; i++) { this.imagenActual[i] = 0; }
+      this.proyectos = datos;
+      this.contenidoDisponible = true;
+    });
+  }
 
 
-    //Ventana emergente para mostrar galeria de 
-    //imagenes del proyecto
-    mostrarGaleria(proyecto: Proyecto): void {
+  //Ventana emergente para mostrar galeria de 
+  //imagenes del proyecto
+  mostrarGaleria(proyecto: Proyecto): void {
     this.dialogo
       .open(GeleriaComponent, {
         width: '100%',
@@ -78,88 +79,91 @@ export class EdicionProyectoComponent implements OnInit {
         panelClass: 'custom-modalbox'
       })
       .afterClosed()
-      .subscribe((confirmado: Boolean) => {});
+      .subscribe((confirmado: Boolean) => { });
   }
 
-   
 
 
 
 
 
 
-    //------------------------------------------------
-    //-------------- NUEVO PROYECTO -----------------
-    //------------------------------------------------
-    //Inicializa el furmulario para agregar un nuevo Proyecto
-    mostrarFormularioAgregarProyecto() {
-      this.accion = "AGREGAR PROYECTO";
-      this.proyectoFormulario = {
-        id: null,
-        nombre: "",
-        descripcion: "",
-        link: "",
-        imagenes: [],
-        desde: null,
-        hasta: null,
-        posicion: this.proyectos.length,
-      };
-      this.fechaHasta = false;
-      this.mostrarFormularioProyecto = true;
-      this.nueva = true;
-    }
-  
-    //Manda al backend el nuevo proyecto
-    guardarNuevoProyecto() {
-      if (this.comprobarCamposObligatorios()) {
-        if (this.comprobarFechas(this.proyectoFormulario.desde, this.proyectoFormulario.hasta)) {
-          this.proyectoService.guaradarProyecto(this.proyectoFormulario).subscribe(data => {
-            if (data == undefined) {
-              this.notificacionesService.showError("No se pudo agregar", "Nuevo Proyecto");
-            }
-            else {
-              this.proyectos.push(data);
-              this.notificacionesService.showSuccess("Se agrego exitosamente", "Nuevo Proyecto");
-            }
-            this.mostrarFormularioProyecto = false;
+
+  //------------------------------------------------
+  //-------------- NUEVO PROYECTO -----------------
+  //------------------------------------------------
+  //Inicializa el furmulario para agregar un nuevo Proyecto
+  mostrarFormularioAgregarProyecto() {
+    this.accion = "AGREGAR PROYECTO";
+    this.proyectoFormulario = {
+      id: null,
+      nombre: "",
+      descripcion: "",
+      link: "",
+      imagenes: [],
+      desde: null,
+      hasta: null,
+      posicion: this.proyectos.length,
+    };
+    this.fechaHasta = false;
+    this.mostrarFormularioProyecto = true;
+    this.nueva = true;
+  }
+
+  //Manda al backend el nuevo proyecto
+  guardarNuevoProyecto() {
+    this.presionoGuardar = true;
+    if (this.comprobarCamposObligatorios()) {
+      if (this.comprobarFechas(this.proyectoFormulario.desde, this.proyectoFormulario.hasta)) {
+        this.proyectoService.guaradarProyecto(this.proyectoFormulario).subscribe(data => {
+          if (data == undefined) {
+            this.notificacionesService.showError("No se pudo agregar", "Nuevo Proyecto");
           }
-          );
+          else {
+            this.proyectos.push(data);
+            this.notificacionesService.showSuccess("Se agrego exitosamente", "Nuevo Proyecto");
+          }
+          this.mostrarFormularioProyecto = false;
+          this.presionoGuardar = false;
         }
-        else {
-          this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Nuevo Proyecto");
-  
-        }
-  
+        );
       }
       else {
-        this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Nuevo Proyecto");
+        this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Nuevo Proyecto");
+        this.presionoGuardar = false;
       }
-    }
-  
-    //No se agrega el nuevo Proyecto
-    cancelarProyecto() { this.mostrarFormularioProyecto = false; }
-  
-    //Comprobacion que los datos obligatorios no sean vacios
-    comprobarCamposObligatorios() {
-      return (this.proyectoFormulario.nombre.length > 0 &&
-        this.proyectoFormulario.descripcion.length > 0 &&
-        this.proyectoFormulario.link.length > 0 &&
-        this.proyectoFormulario.desde != null && 
-        !(this.fechaHasta && this.proyectoFormulario.hasta == null ))
-    }
-  
-    //Comprobacion fechas: desde debe ser menor que hasta
-    comprobarFechas(desde: Date, hasta: Date) {
-      if (hasta == null) {return true;}
-      else {return desde < hasta;}
-    }
-  
-    eliminarImagen(index : number){
-      this.proyectoFormulario.imagenes.splice(index, 1);
 
     }
-    //Se pide confirmacion antes de borrar
-  mostrarVentanaConfirmacionImagen(posicion : number): void {
+    else {
+      this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Nuevo Proyecto");
+      this.presionoGuardar = false;
+    }
+  }
+
+  //No se agrega el nuevo Proyecto
+  cancelarProyecto() { this.mostrarFormularioProyecto = false; }
+
+  //Comprobacion que los datos obligatorios no sean vacios
+  comprobarCamposObligatorios() {
+    return (this.proyectoFormulario.nombre.length > 0 &&
+      this.proyectoFormulario.descripcion.length > 0 &&
+      this.proyectoFormulario.link.length > 0 &&
+      this.proyectoFormulario.desde != null &&
+      !(this.fechaHasta && this.proyectoFormulario.hasta == null))
+  }
+
+  //Comprobacion fechas: desde debe ser menor que hasta
+  comprobarFechas(desde: Date, hasta: Date) {
+    if (hasta == null) { return true; }
+    else { return desde < hasta; }
+  }
+
+  eliminarImagen(index: number) {
+    this.proyectoFormulario.imagenes.splice(index, 1);
+
+  }
+  //Se pide confirmacion antes de borrar
+  mostrarVentanaConfirmacionImagen(posicion: number): void {
     this.dialogo
       .open(VentanaConfirmacionComponent, {
         data: `¿Desea eliminar el elemento?`,
@@ -169,11 +173,12 @@ export class EdicionProyectoComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarImagen(posicion);
-          
-        }});
+
+        }
+      });
   }
 
-  informarMovimiento(){
+  informarMovimiento() {
     this.notificacionesService.showInfo("Arrastre el elemento para cambiarlo de posición", "Imagenes del proyecto");
 
   }
@@ -210,27 +215,35 @@ export class EdicionProyectoComponent implements OnInit {
 
   //Mandamos al backend las modificaciones
   guardarCambiosProyecto() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
       if (this.comprobarFechas(this.proyectoFormulario.desde, this.proyectoFormulario.hasta)) {
-        if(!this.fechaHasta){
+        if (!this.fechaHasta) {
           this.proyectoFormulario.hasta = null;
         }
         this.proyectoService.guaradarProyecto(this.proyectoFormulario).subscribe(data => {
-          this.proyectos.splice(this.proyectoFormulario.posicion, 1, this.proyectoFormulario);
+          if (data == undefined) {
+            this.notificacionesService.showError("No se pudo modificar", "Modificar Proyecto");
+          }
+          else {
+            this.proyectos.splice(this.proyectoFormulario.posicion, 1, this.proyectoFormulario);
+            this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar proyecto");
+          }
           this.mostrarFormularioProyecto = false;
-          this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar proyecto");
-        }
-        );
+          this.presionoGuardar = false;
+        });
       }
       else {
         this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Modificar proyecto");
+        this.presionoGuardar = false;
       }
     }
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Modificar proyecto");
+      this.presionoGuardar = false;
     }
   }
-  
+
 
 
 
@@ -271,9 +284,10 @@ export class EdicionProyectoComponent implements OnInit {
       .afterClosed()
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
-         this.eliminarProyecto(proyecto);
-          
-        }});
+          this.eliminarProyecto(proyecto);
+
+        }
+      });
   }
 
 
@@ -307,7 +321,7 @@ export class EdicionProyectoComponent implements OnInit {
 
     }
   }
-  
+
 
 
 

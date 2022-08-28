@@ -12,7 +12,7 @@
             <h2 class="tituloArticle">{{edu.tituloObtenido}}</h2>
             <h3 class="fechaArticle">Desde {{edu.desde | date: 'dd/MM/yyyy'}}</h3>
             <h3 *ngIf="edu.hasta!=null" class="fechaArticle">Hasta {{edu.hasta | date: 'dd/MM/yyyy'}}</h3>
-            <h3 *ngIf="edu.hasta==null" class="fechaArticle">Hasta actualidad</h3>
+            <h3 *ngIf="edu.hasta==null" class="fechaArticle">Hasta la actualidad</h3>
         </article>
     </div>
 </section>

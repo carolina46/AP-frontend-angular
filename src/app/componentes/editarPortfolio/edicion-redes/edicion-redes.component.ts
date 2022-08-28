@@ -11,7 +11,8 @@ import { TokenService } from 'src/app/servicios/token.service';
   styleUrls: ['./edicion-redes.component.css']
 })
 export class EdicionRedesComponent implements OnInit {
-
+ 
+  presionoGuardar: boolean = false;
   mostrarFormulario: boolean = false;
   formulario: any;
 
@@ -63,6 +64,7 @@ export class EdicionRedesComponent implements OnInit {
   }
 
   guardar() {
+    this.presionoGuardar = true;
     this.redesSocialesService.guaradarRedesSociales(this.formulario).subscribe(resultado => {
       if (resultado != undefined) {
         this.redesSociales = resultado;
@@ -72,6 +74,7 @@ export class EdicionRedesComponent implements OnInit {
         this.notificacionesService.showError("No se guardaron los cambios", "Redes Sociales");
       }
       this.mostrarFormulario = false;
+      this.presionoGuardar = false;
     });
 
   }

@@ -59,10 +59,13 @@
                 </div>
 
                 <div class="contenedorBotones">
-                    <button *ngIf="nueva" class="botonFormulario" type="button"
+                    <button *ngIf="nueva && !presionoGuardar" class="botonFormulario" type="button"
                         (click)="guardarNuevoProyecto()">Guardar</button>
-                    <button *ngIf="!nueva" class="botonFormulario" type="button"
+                    <button *ngIf="!nueva && !presionoGuardar" class="botonFormulario" type="button"
                         (click)="guardarCambiosProyecto()">Guardar</button>
+                        <div *ngIf="presionoGuardar" class="contenedorProcesando"><img class="procesando"
+                            src="./assets/cargando.gif" alt="COMPROBANDO..."></div>
+                    
                     <button class="botonFormulario" type="button" (click)="cancelarProyecto()">Cancelar</button>
                 </div>
             </div>

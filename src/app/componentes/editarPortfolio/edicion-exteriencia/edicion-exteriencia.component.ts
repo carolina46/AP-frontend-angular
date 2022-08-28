@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 })
 export class EdicionExterienciaComponent implements OnInit {
 
+  presionoGuardar: boolean = false;
   //Control de llegada del contenido desde el backend. 
   //Se mostrara animacion de cargando hasta que llegue.
   contenidoDisponible: boolean = false;
@@ -28,7 +29,7 @@ export class EdicionExterienciaComponent implements OnInit {
   //Para guardar los datos del formulario
   nuevaExperiencia: any;
   //Para control del imput de la fecha hasta true=seleccionado
-  fechaHasta : boolean = true;
+  fechaHasta: boolean = true;
 
   //Listado de experiencias laborales
   experiencias: Experiencia[] = [];
@@ -90,6 +91,7 @@ export class EdicionExterienciaComponent implements OnInit {
 
   //Manda al backend la experiencia
   guardarNuevaExperiencia() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
       if (this.comprobarFechas(this.nuevaExperiencia.desde, this.nuevaExperiencia.hasta)) {
         if (this.nuevaExperiencia.logoEmpresa == "./assets/mas.png") {
@@ -104,15 +106,18 @@ export class EdicionExterienciaComponent implements OnInit {
             this.notificacionesService.showSuccess("Se agrego exitosamente", "Nueva Experiencia");
           }
           this.formularioExperiencia = false;
+          this.presionoGuardar = false;
         }
         );
       }
       else {
         this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Nueva Experiencia");
+        this.presionoGuardar = false;
       }
     }
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Nueva Experiencia");
+      this.presionoGuardar = false;
     }
   }
 
@@ -120,11 +125,11 @@ export class EdicionExterienciaComponent implements OnInit {
   cancelarExperiencia() { this.formularioExperiencia = false; }
 
   comprobarCamposObligatorios() {
-    
+
     return (this.nuevaExperiencia.nombreLugarDeTrabajo.length > 0 &&
       this.nuevaExperiencia.nombrePuesto.length > 0 &&
       this.nuevaExperiencia.descripcionActividades.length > 0 &&
-      this.nuevaExperiencia.desde != null && !(this.fechaHasta && this.nuevaExperiencia.hasta == null ))
+      this.nuevaExperiencia.desde != null && !(this.fechaHasta && this.nuevaExperiencia.hasta == null))
   }
 
   comprobarFechas(desde: Date, hasta: Date) {
@@ -162,6 +167,7 @@ export class EdicionExterienciaComponent implements OnInit {
   }
 
   guardarCambiosExperiencia() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
       if (this.comprobarFechas(this.nuevaExperiencia.desde, this.nuevaExperiencia.hasta)) {
 
@@ -169,24 +175,32 @@ export class EdicionExterienciaComponent implements OnInit {
         if (this.nuevaExperiencia.logoEmpresa == "./assets/mas.png") {
           this.nuevaExperiencia.logoEmpresa = "";
         }
-        if(!this.fechaHasta){
+        if (!this.fechaHasta) {
           this.nuevaExperiencia.hasta = null;
         }
         this.experienciaService.guaradarExperiencia(this.nuevaExperiencia).subscribe(data => {
-          this.experiencias.splice(this.nuevaExperiencia.posicion, 1, this.nuevaExperiencia);
+          if (data == undefined) {
+            this.notificacionesService.showError("No se pudo modificar", "Modificar Experiencia");
+          }
+          else {
+            this.experiencias.splice(this.nuevaExperiencia.posicion, 1, this.nuevaExperiencia);
+            this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar Experiencia");
+          }
           this.formularioExperiencia = false;
-          this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar Experiencia");
+          this.presionoGuardar = false;
 
         }
         );
       }
       else {
+        this.presionoGuardar = false;
         this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Modificar Experiencia");
 
       }
     }
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Modificar Experiencia");
+      this.presionoGuardar = false;
     }
   }
 

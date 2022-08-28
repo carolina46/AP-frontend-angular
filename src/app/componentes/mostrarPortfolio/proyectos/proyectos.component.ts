@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Proyecto } from 'src/app/modelo/proyecto';
 import { ProyectoService } from 'src/app/servicios/proyecto.service';
-import { GeleriaComponent } from '../../geleria/geleria.component';
+import { GeleriaComponent } from '../../galeria/geleria.component';
 
 @Component({
   selector: 'app-proyectos',

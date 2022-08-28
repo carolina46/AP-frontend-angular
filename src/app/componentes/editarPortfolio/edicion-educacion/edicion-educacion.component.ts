@@ -14,7 +14,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./edicion-educacion.component.css']
 })
 export class EdicionEducacionComponent implements OnInit {
-  
+
+  presionoGuardar: boolean = false;
   //Control de llegada del contenido desde el backend. 
   //Se mostrara animacion de cargando hasta que llegue.
   contenidoDisponible: boolean = false;
@@ -28,7 +29,7 @@ export class EdicionEducacionComponent implements OnInit {
   //Para guardar los datos del formulario
   educacionFormulario: any;
   //Para control del imput de la fecha hasta true=seleccionado
-  fechaHasta : boolean = true;
+  fechaHasta: boolean = true;
 
   //Listado de educacion
   educacion: Educacion[] = [];
@@ -91,9 +92,10 @@ export class EdicionEducacionComponent implements OnInit {
 
   //Manda al backend la nueva esucacion
   guardarNuevaEducacion() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
       if (this.comprobarFechas(this.educacionFormulario.desde, this.educacionFormulario.hasta)) {
-        
+
         if (this.educacionFormulario.logoInstitucional == "./assets/mas.png") {
           this.educacionFormulario.logoInstitucional = "";
         }
@@ -107,17 +109,19 @@ export class EdicionEducacionComponent implements OnInit {
             this.notificacionesService.showSuccess("Se agrego exitosamente", "Nueva Educación");
           }
           this.formularioEducacion = false;
+          this.presionoGuardar = false;
         }
         );
       }
       else {
         this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Nueva Educación");
-
+        this.presionoGuardar = false;
       }
 
     }
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Nueva Educación");
+      this.presionoGuardar = false;
     }
   }
 
@@ -128,14 +132,14 @@ export class EdicionEducacionComponent implements OnInit {
   comprobarCamposObligatorios() {
     return (this.educacionFormulario.nombreInstitucion.length > 0 &&
       this.educacionFormulario.tituloObtenido.length > 0 &&
-      this.educacionFormulario.desde != null && 
-      !(this.fechaHasta && this.educacionFormulario.hasta == null ))
+      this.educacionFormulario.desde != null &&
+      !(this.fechaHasta && this.educacionFormulario.hasta == null))
   }
 
   //Comprobacion fechas: desde debe ser menor que hasta
   comprobarFechas(desde: Date, hasta: Date) {
-    if (hasta == null) {return true;}
-    else {return desde < hasta;}
+    if (hasta == null) { return true; }
+    else { return desde < hasta; }
   }
 
 
@@ -166,34 +170,44 @@ export class EdicionEducacionComponent implements OnInit {
     if (educacion.logoInstitucional.length == 0) {
       this.educacionFormulario.logoInstitucional = "./assets/mas.png";
     }
-    
+
     this.nueva = false;
     this.formularioEducacion = true;
   }
 
   //Mandamos al backend las modificaciones
   guardarCambiosEducacion() {
+    this.presionoGuardar = true;
     if (this.comprobarCamposObligatorios()) {
       if (this.comprobarFechas(this.educacionFormulario.desde, this.educacionFormulario.hasta)) {
         if (this.educacionFormulario.logoInstitucional == "./assets/mas.png") {
           this.educacionFormulario.logoInstitucional = "";
         }
-        if(!this.fechaHasta){
+        if (!this.fechaHasta) {
           this.educacionFormulario.hasta = null;
         }
         this.educacionService.guaradarEducacion(this.educacionFormulario).subscribe(data => {
-          this.educacion.splice(this.educacionFormulario.posicion, 1, this.educacionFormulario);
+          if (data == undefined) {
+            this.notificacionesService.showError("No se pudo modificar", "Modificar Educación");
+          }
+          else {
+
+            this.educacion.splice(this.educacionFormulario.posicion, 1, this.educacionFormulario);
+            this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar Educación");
+          }
+          this.presionoGuardar = false;
           this.formularioEducacion = false;
-          this.notificacionesService.showSuccess("Se guardaron los combios exitosamente", "Modificar Educación");
         }
         );
       }
       else {
         this.notificacionesService.showWarning("La fecha Desde debe ser menor que la fecha Hasta", "Modificar Educación");
+        this.presionoGuardar = false;
       }
     }
     else {
       this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Modificar Educación");
+      this.presionoGuardar = false;
     }
   }
 
@@ -237,7 +251,8 @@ export class EdicionEducacionComponent implements OnInit {
       .subscribe((confirmado: Boolean) => {
         if (confirmado) {
           this.eliminarEducacion(educacion);
-        }});
+        }
+      });
   }
 
 

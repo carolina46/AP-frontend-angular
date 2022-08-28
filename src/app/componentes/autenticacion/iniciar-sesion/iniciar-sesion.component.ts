@@ -13,8 +13,8 @@ import { TokenService } from 'src/app/servicios/token.service';
 })
 export class IniciarSesionComponent implements OnInit {
 
+  presionoAcceder : boolean = false;
   isLogged = false;
-  isLoginFail = false;
   roles: string[] = [];
 
   usuario: LoginUsuario = {
@@ -35,8 +35,11 @@ export class IniciarSesionComponent implements OnInit {
   }
 
   onLogin(): void {
+    this.presionoAcceder = true;
     if (this.usuario.nombreUsuario.length == 0 || this.usuario.clave.length == 0) {
+      this.presionoAcceder = false;
       this.notificacionesService.showWarning("Debe completar ambos campos", "Inicio de Sesion");
+    
     }
     else {
 
@@ -49,9 +52,9 @@ export class IniciarSesionComponent implements OnInit {
           this.roles = data.authorities;
           this.notificacionesService.showSuccess('Bienvenido ' + data.nombreUsuario, "Panel de edición");
           this.router.navigate(['/edicionPortfolio']);
-          console.log("Acceso a la edicion");
         },
         err => {
+          this.presionoAcceder = false;
           this.isLogged = false;
           this.notificacionesService.showError("Usuario o clave incorrecta", "Inicio de Sesion");
 
