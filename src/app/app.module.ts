@@ -58,7 +58,11 @@ import { GeleriaComponent } from './componentes/galeria/geleria.component';
     HttpClientModule,
     DragDropModule,
     BrowserAnimationsModule, 
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+}),
     MatDialogModule,
     MatButtonModule,
   ],
