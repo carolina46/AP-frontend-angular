@@ -87,10 +87,10 @@ export class EdicionRedesComponent implements OnInit {
 
   //Comprobacion que los datos obligatorios no sean vacios
   comprobarCamposObligatorios() {
-    return (this.redesSociales.facebook.length > 0 &&
-      this.redesSociales.twitter.length > 0 &&
-      this.redesSociales.instagram.length > 0 &&
-      this.redesSociales.argentinaPrograma.length > 0 )
+    return (this.formulario.facebook.length > 0 &&
+      this.formulario.twitter.length > 0 &&
+      this.formulario.instagram.length > 0 &&
+      this.formulario.argentinaPrograma.length > 0 )
   }
 
   cancelar() {
