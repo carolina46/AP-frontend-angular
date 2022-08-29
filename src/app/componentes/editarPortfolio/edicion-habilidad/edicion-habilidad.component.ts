@@ -121,7 +121,7 @@ export class EdicionHabilidadComponent implements OnInit {
 
   //Comprobacion que los datos obligatorios no sean vacios
   comprobarCamposObligatorios() {
-    return (this.habilidadFormulario.nombre.length &&
+    return (this.habilidadFormulario.nombre.length > 0 &&
       this.habilidadFormulario.porcentajeDominio != null &&
       this.habilidadFormulario.imagen != "./assets/mas.png")
   }

@@ -20,19 +20,20 @@
         <div id="contenedorFormulario" *ngIf="mostrarFormulario">
             <div id="formulario">
                 <span>EDITAR REDES SOCIALES</span>
+                <p style="color: tomato; ">* Campos obligatorios</p>
                 
     
                    
-                <label for="argentinaPrograma">Argentina Programa</label>
+                <label for="argentinaPrograma" style="color: tomato; ">* Argentina Programa</label>
                 <input id="argentinaPrograma" [(ngModel)]="formulario.argentinaPrograma" type="text">
     
-                <label for="facebook">Facebook</label>
+                <label for="facebook" style="color: tomato; ">* Facebook</label>
                 <input id="facebook" [(ngModel)]="formulario.facebook" type="text">
                 
-                <label for="twitter">Twitter</label>
+                <label for="twitter" style="color: tomato; ">* Twitter</label>
                 <input id="twitter" [(ngModel)]="formulario.twitter" type="text">
 
-                <label for="instagram">Instragram</label>
+                <label for="instagram" style="color: tomato; ">* Instragram</label>
                 <input id="instagram" [(ngModel)]="formulario.instagram" type="text">
                 
                 

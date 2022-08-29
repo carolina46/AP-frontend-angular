@@ -11,7 +11,7 @@ import { TokenService } from 'src/app/servicios/token.service';
   styleUrls: ['./edicion-redes.component.css']
 })
 export class EdicionRedesComponent implements OnInit {
- 
+
   presionoGuardar: boolean = false;
   mostrarFormulario: boolean = false;
   formulario: any;
@@ -31,11 +31,11 @@ export class EdicionRedesComponent implements OnInit {
 
   ngOnInit(): void {
     this.redesSocialesService.obtenerDatosResdesSociales().subscribe(datos => {
-        if (datos != null) {
-        this.redesSociales = datos;   
+      if (datos != null) {
+        this.redesSociales = datos;
 
       }
-      else{
+      else {
         this.redesSociales = {
           id: 0,
           argentinaPrograma: 'https://www.argentina.gob.ar/produccion/transformacion-digital-y-economia-del-conocimiento/argentina-programa',
@@ -53,7 +53,7 @@ export class EdicionRedesComponent implements OnInit {
 
 
   editarRedesSociales() {
-      this.formulario = {
+    this.formulario = {
       id: this.redesSociales.id,
       facebook: this.redesSociales.facebook,
       twitter: this.redesSociales.twitter,
@@ -65,25 +65,39 @@ export class EdicionRedesComponent implements OnInit {
 
   guardar() {
     this.presionoGuardar = true;
-    this.redesSocialesService.guaradarRedesSociales(this.formulario).subscribe(resultado => {
-      if (resultado != undefined) {
-        this.redesSociales = resultado;
-        this.notificacionesService.showSuccess("Se guardaron los cambios", "Redes Sociales");
-      }
-      else {
-        this.notificacionesService.showError("No se guardaron los cambios", "Redes Sociales");
-      }
-      this.mostrarFormulario = false;
+    if (this.comprobarCamposObligatorios()) {
+      this.redesSocialesService.guaradarRedesSociales(this.formulario).subscribe(resultado => {
+        if (resultado != undefined) {
+          this.redesSociales = resultado;
+          this.notificacionesService.showSuccess("Se guardaron los cambios", "Redes Sociales");
+        }
+        else {
+          this.notificacionesService.showError("No se guardaron los cambios", "Redes Sociales");
+        }
+        this.mostrarFormulario = false;
+        this.presionoGuardar = false;
+      });
+    }
+    else {
+      this.notificacionesService.showWarning("Debe completar todos los campos obligatorios", "Redes Sociales");
       this.presionoGuardar = false;
-    });
+    }
 
+  }
+
+  //Comprobacion que los datos obligatorios no sean vacios
+  comprobarCamposObligatorios() {
+    return (this.redesSociales.facebook.length > 0 &&
+      this.redesSociales.twitter.length > 0 &&
+      this.redesSociales.instagram.length > 0 &&
+      this.redesSociales.argentinaPrograma.length > 0 )
   }
 
   cancelar() {
     this.mostrarFormulario = false;
   }
 
-  logOut(){
+  logOut() {
     this.tokenService.logOut();
     this.router.navigate(['/']);
   }
